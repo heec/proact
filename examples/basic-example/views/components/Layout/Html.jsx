@@ -5,7 +5,7 @@ export default function (props, context) {
   return (
     <html>
       <head>
-        <title>{title}</title>
+        <title>{context.title}</title>
       </head>
       <body>{children}</body>
     </html>

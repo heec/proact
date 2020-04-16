@@ -1,1 +1,4 @@
 node_modules
+lib/cli
+lib/components
+lib/styles

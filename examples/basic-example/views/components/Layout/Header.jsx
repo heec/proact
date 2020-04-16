@@ -5,7 +5,8 @@ export default function (props, context) {
     <header>
       <h1>App title</h1>
       <nav>
-        <a href="/">home</a>
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
       </nav>
     </header>
   )

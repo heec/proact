@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon -e js,jsx --watch views --watch ../../lib/core/",
+    "dev": "nodemon -e js,jsx --watch views --watch ../../lib/core/ --watch ../../lib/styles/",
     "start": "node server.js"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
     "@proact/core": "file:../../lib/core",
+    "@proact/styles": "file:../../lib/styles",
     "express": "^4.17.1",
     "nodemon": "^2.0.3"
   }

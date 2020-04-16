@@ -5,7 +5,7 @@ import Header from './Header'
 import Footer from './Footer'
 
 export default function (props, context) {
-  const { title, children } = props
+  const { children } = props
   return (
     <Html>
       <Header />

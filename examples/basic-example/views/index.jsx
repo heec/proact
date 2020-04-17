@@ -1,23 +1,15 @@
 import Proact from '@proact/core'
-import Layout from './components/Layout'
+import Layout from './Layout'
 
 export default function (props, context) {
   return (
-    <Layout title="Basic Example">
-      <section>
-        <h1>hello world</h1>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </section>
-      <section>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-        <ul>
-          <li>Lorem ipsum dolor sit.</li>
-          <li>Lorem ipsum dolor sit.</li>
-          <li>Lorem ipsum dolor sit.</li>
-          <li>Lorem ipsum dolor sit.</li>
-          <li>Lorem ipsum dolor sit.</li>
-        </ul>
-      </section>
+    <Layout>
+      <h1>Hello {context.user.name}</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Aspernatur quam maxime cum vero, <b>consequatur</b> quaerat
+        minima enim sapiente illum excepturi dolores?
+      </p>
     </Layout>
   )
 }

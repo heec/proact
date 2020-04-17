@@ -1,6 +1,6 @@
-# Proact
+# proact
 
-Express view engine using jsx to render views.
+Proact is an Express view engine which renders jsx components on server to static markup.
 
 install
 
@@ -13,13 +13,15 @@ npm install @proact/core
 /views/index.js
 
 ```
+import Proact from '@proact/core'
+
 export default async function (props, context) {
   const data = await getDataAsync()
   return (
     <div>
       <h1>{context.title}</h1>
       <ul>
-        {data.map{d => <li>{d}</li>}}
+        {data.map(d => <li>{d}</li>)}
       </ul>
     </div>
   )

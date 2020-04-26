@@ -1,11 +1,11 @@
 {
   "name": "@proact/core",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Express view engine using jsx to render views.",
   "repository": "heec/proact",
   "main": "src/index.js",
   "scripts": {
-    "publish": "npm publish --access public"
+    "test": "echo \"No test specified\""
   },
   "keywords": [
     "express",
@@ -16,6 +16,9 @@
   ],
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

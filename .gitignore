@@ -1,5 +1,6 @@
 .npmrc
 node_modules
+tasklist.md
 lib/cli
 lib/components
 lib/styles

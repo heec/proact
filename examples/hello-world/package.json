@@ -1,11 +1,9 @@
 {
-  "name": "basic-example",
-  "version": "0.0.1",
-  "description": "",
-  "main": "server.js",
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": "proact 'hello world' sample",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon -e js,jsx --watch views",
-    "dev-lib": "nodemon -e js,jsx --watch views --watch ../../lib/core/",
     "start": "node server.js"
   },
   "keywords": [],
@@ -17,7 +15,6 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
     "@proact/core": "file:../../lib/core",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.3"
+    "express": "^4.17.1"
   }
 }

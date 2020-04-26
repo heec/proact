@@ -4,15 +4,12 @@ const Proact = require('@proact/core')
 const PORT = 3100
 const app = express()
 
-Proact.initialize(app, { views: 'views' })
+Proact.initializeViewEngine(app, { views: 'views' })
 
 app.get('/', (req, res) => {
-  res.render('index', {
-    title: 'Proact Basic Example',
-    user: { name: 'Mike', email: 'mike@gmail.com' },
-  })
+  res.render('index', { title: 'Basic Example' })
 })
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log(`server running at http://localhost:${PORT}`)
 })

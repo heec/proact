@@ -1,11 +1,11 @@
-# Proact basic example
+# Proact Hallo World sample
 
 Run this example on your local computer
 
 ```
 git clone https://github.com/heec/proact.git
-cd proact/examples/basic-eample
+cd proact/examples/hello-world
 npm install
-npm run dev
+npm run start
 
 ```

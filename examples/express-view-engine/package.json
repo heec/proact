@@ -1,0 +1,25 @@
+{
+  "name": "basic-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon -e js,jsx --watch views",
+    "dev-lib": "nodemon -e js,jsx --watch views --watch ../../lib/core/",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/register": "^7.9.0",
+    "@proact/core": "file:../../lib/core",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "markdown-it": "^10.0.0",
+    "nodemon": "^2.0.3"
+  }
+}

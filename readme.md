@@ -1,32 +1,22 @@
 # proact
 
-Proact is an Express view engine which renders jsx components on server to static markup.
+Proact is an Express view engine which renders jsx functional components on server to static markup.
 
-install
+### Features
+
+- Support for async rendered views
+- Optimized for fast server rendering
+- Output caching
+
+### install
 
 ```
 npm install @proact/core
 ```
 
-## Basic sample
+## Basic usage
 
-/views/index.js
-
-```
-import Proact from '@proact/core'
-
-export default async function (props, context) {
-  const data = await getDataAsync()
-  return (
-    <div>
-      <h1>{context.title}</h1>
-      <ul>
-        {data.map(d => <li>{d}</li>)}
-      </ul>
-    </div>
-  )
-}
-```
+### Use as express view engine
 
 /server.js
 
@@ -37,13 +27,41 @@ const Proact = require('@proact/core')
 const PORT = 3100
 const app = express()
 
-Proact.initialize(app, { views: 'views' })
+Proact.initializeViewEngine(app, { views: 'views' })
 
 app.get('/', (req, res) => {
-  res.render('index', { title: 'Basic Example' })
+  const context = { title: 'Basic Example' }
+  res.render('index', context)
 })
 
 app.listen(PORT, function () {
   console.log(`server running at http://localhost:${PORT}`)
 })
+```
+
+### JSX Views
+
+Proact supports only functional components. The component gets two parameters: `props` and `context`.
+
+```
+import Proact from '@proact/core'
+
+export default (props, context) => (
+  <div>{context.user.email}</div>
+)
+```
+
+Components can also be async.
+
+```
+import Proact from '@proact/core'
+
+export default async function (props, context) {
+  const data = await getSomeDataAsync()
+  return (
+    <ul>
+      {data.map(item => <li>{item}</li>)}
+    </ul>
+  )
+}
 ```

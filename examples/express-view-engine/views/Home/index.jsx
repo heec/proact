@@ -1,4 +1,4 @@
-import Proact from '@proact/core'
+import Proact, { Cache } from '@proact/core'
 
 import Layout from '../components/Layout'
 import Section from '../components/Section'
@@ -15,8 +15,8 @@ export default function (props, context) {
           sapiente illum excepturi dolores?
         </p>
       </Section>
-      <Readme />
-      <LatestPosts />
+      <Cache key="readme" content={() => <Readme />} />
+      <Cache key="latestPosts" content={() => <LatestPosts />} />
     </Layout>
   )
 }

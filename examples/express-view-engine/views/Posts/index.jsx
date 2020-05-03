@@ -8,12 +8,16 @@ export default function (props, context) {
   const { slug } = context
   return (
     <Layout>
-      <Cache key={`post-${slug}`} maxAge={360}>
-        <Post slug={slug} />
-      </Cache>
-      <Cache key={`post-${slug}-relatedposts`} maxAge={60}>
-        <LatestPosts />
-      </Cache>
+      <Cache
+        key={`post-${slug}`}
+        maxAge={360}
+        content={() => <Post slug={slug} />}
+      />
+      <Cache
+        key={`post-${slug}-relatedposts`}
+        maxAge={60}
+        content={() => <LatestPosts />}
+      />
     </Layout>
   )
 }

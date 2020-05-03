@@ -1,6 +1,6 @@
 {
   "name": "@proact/core",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Express view engine using jsx to render views.",
   "repository": "heec/proact",
   "main": "src/index.js",
@@ -26,8 +26,8 @@
   },
   "dependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
     "cls-hooked": "^4.2.2"

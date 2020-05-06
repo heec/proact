@@ -1,6 +1,6 @@
 {
   "name": "@proact/core",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "Express view engine using jsx to render views.",
   "repository": "heec/proact",
   "main": "src/index.js",

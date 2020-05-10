@@ -17,7 +17,7 @@ npm install @proact/core
 
 ## Basic usage
 
-Rendering THML
+Rendering HTML
 
 ```
 // templates/Paragraph.jsx

@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('public'))
 app.use('/', routes)
 
-Proact.initializeViewEngine(app, { views: 'views' })
+Proact.initializeViewEngine(app, { views: 'views', docType: 'xhtml' })
 
 app.listen(PORT, function () {
   console.log(`server running at http://localhost:${PORT}`)

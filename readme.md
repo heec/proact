@@ -1,12 +1,13 @@
-# proact
+# @Proact/core
 
-Proact is an Express view engine which renders jsx functional components on server to static markup.
+Proact is an template engine for node js which renders React like jsx functional components to static HTML or XML.
 
 ### Features
 
-- Support for async rendered views
 - Optimized for fast server rendering
+- Supports async rendered views
 - Output caching
+- Built-in express view engine
 
 ### install
 
@@ -16,7 +17,73 @@ npm install @proact/core
 
 ## Basic usage
 
-### Use as express view engine
+Rendering THML
+
+```
+// templates/Paragraph.jsx
+import Proact from '@proact/core'
+
+export default (props, context) => (
+  <p>{context.body}</p>
+)
+
+```
+
+```
+// index.js
+const Proact = require('@proact/core')
+
+const renderer = Proact.createRenderer({ views: 'templates' })
+
+renderer
+  .renderToString('Paragraph.jsx', { body: 'lorem ipsum' })
+  .then(function (html) {
+    console.log(html)
+  })
+
+```
+
+Rendering XML
+
+```
+// templates/data.jsx
+import Proact from '@proact/core'
+
+export default async (props, context) => {
+  return (
+    <data
+      xmlns="http://www.myorg.org/schemas/data/0.9"
+      m:xmlns="http://www.myorg.org/schemas/meta/0.9"
+    >
+      <title>{context.title}</title>
+      <m:category>{context.category}</m:category>
+    </data>
+  )
+}
+```
+
+```
+// index.js
+const Proact = require('@proact/core')
+
+// set docType to xml
+const renderer = Proact.createRenderer({
+  views: 'templates',
+  docType: 'xml',
+})
+
+renderer
+  .renderToString('data.jsx', {
+    title: 'lorem ipsum',
+    category: 'dolor',
+  })
+  .then(function (xml) {
+    console.log(xml)
+  })
+
+```
+
+### Built-in express view engine
 
 ```
 // server.js

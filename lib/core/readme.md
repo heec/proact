@@ -1,11 +1,12 @@
-# proact
+# @Proact/core
 
-Proact is an Express view engine which renders jsx functional components on server to static markup.
+Proact is an template engine for node js which renders React like jsx functional components to static HTML or XML.
 
 ### Features
 
-- Support for async rendered views
 - Optimized for fast server rendering
+- Supports async rendered views
+- Built-in express view engine
 - Output caching
 
 ### install
@@ -16,7 +17,33 @@ npm install @proact/core
 
 ## Basic usage
 
-### Use as express view engine
+Rendering jsx components to string
+
+```
+// templates/paragraph.jsx
+import Proact from '@proact/core'
+
+export default (props, context) => (
+  <p>{context.body}</p>
+)
+
+```
+
+```
+// index.js
+const Proact = require('@proact/core')
+
+const renderer = Proact.createRenderer({ views: 'templates' })
+
+renderer
+  .renderToString('paragraph.jsx', { body: 'lorem ipsum' })
+  .then(function (html) {
+    console.log(html)
+  })
+
+```
+
+### Built-in express view engine
 
 ```
 // server.js

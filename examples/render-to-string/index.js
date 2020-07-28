@@ -1,5 +1,4 @@
 const Proact = require('@proact/core')
-
 const renderer = Proact.createRenderer({ views: 'templates' })
 
 const context = {
@@ -12,10 +11,20 @@ const context = {
   },
 }
 
-renderer
-  .renderToString('HelloWorld', context, {
+async function run() {
+  const html = await renderer.renderToString('HelloWorld', context, {
     docType: 'html',
   })
-  .then(function (html) {
-    console.log(html)
+  console.log(html)
+
+  const Component = function (props, context) {
+    return Proact.h('h1', {}, ['hello world'])
+  }
+
+  const html2 = await renderer.renderToString(Component, context, {
+    docType: 'html',
   })
+  console.log(html2)
+}
+
+run()

@@ -23,7 +23,8 @@ const SplitContentLeft = styled.div`
 
 const SplitContentRight = styled.div`
   padding: 20px;
-  flex-basis: 640px;
+  flex-basis: 33vw;
+  min-width: 640px;
 `
 
 export default function () {

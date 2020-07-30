@@ -10,7 +10,10 @@
   "scripts": {
     "dev": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "Static Site Generator",
+    "jsx"
+  ],
   "author": "",
   "repository": "heec/proact",
   "publishConfig": {

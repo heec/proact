@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "proact-ssg serve --config ssg.config.json --port 5554"
+    "start": "proact-ssg serve"
   },
   "keywords": [],
   "author": "",

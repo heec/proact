@@ -1,0 +1,65 @@
+{
+  "name": "Test Blog ",
+  "fileName": "test-blog.json",
+  "routes": {
+    "en": "/test-blog",
+    "de": "/de/test-blog"
+  },
+  "id": "f65e0de8-2d79-42af-bc6d-5f600099eda0",
+  "dateCreated": "2020-07-30T05:17:40.258Z",
+  "dateLastModified": "2020-07-30T05:17:40.258Z",
+  "content": {
+    "id": "2ae8d502-d6bc-4687-9deb-39ca6069bfd8",
+    "componentId": "blogPostLayout",
+    "props": {
+      "pageTitle": {
+        "en": "",
+        "de": ""
+      },
+      "pageDescription": {
+        "en": "",
+        "de": ""
+      }
+    },
+    "children": [
+      {
+        "id": "deca97db-b158-44a6-84a3-7e90ddbb27e7",
+        "componentId": "hero",
+        "props": {
+          "title": {
+            "en": "",
+            "de": ""
+          },
+          "leadText": {
+            "en": "",
+            "de": ""
+          },
+          "image": {
+            "*": ""
+          }
+        }
+      },
+      {
+        "id": "5574dd08-0392-45ce-b115-456b9959018b",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "55468217-40d6-4f89-9068-4e84beb1baf7",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "",
+                "de": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

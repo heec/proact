@@ -1,0 +1,71 @@
+{
+  "name": "Home",
+  "fileName": "index.json",
+  "routes": {
+    "en": "/index.js",
+    "de": "/de/index.js",
+    "es": "/es/index.js"
+  },
+  "id": "b815b49d-a9b1-477d-93ba-1c2c07ca5ec8",
+  "dateCreated": "2020-07-30T05:25:21.705Z",
+  "dateLastModified": "2020-07-30T05:34:37.941Z",
+  "content": {
+    "id": "6b33ada4-c2e9-46bc-9712-f94207be83c1",
+    "componentId": "contentPageLayout",
+    "props": {
+      "pageTitle": {
+        "en": "",
+        "de": "",
+        "es": ""
+      },
+      "pageDescription": {
+        "en": "",
+        "de": "",
+        "es": ""
+      }
+    },
+    "children": [
+      {
+        "id": "86514549-d762-4864-816e-9a77802e7bf6",
+        "componentId": "hero",
+        "props": {
+          "title": {
+            "en": "Proact ssg sample",
+            "de": "",
+            "es": ""
+          },
+          "leadText": {
+            "en": "",
+            "de": "",
+            "es": ""
+          },
+          "image": {
+            "*": ""
+          }
+        }
+      },
+      {
+        "id": "88fa6774-5e85-439f-987c-eb41b069de53",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "f032bf58-5605-475a-944f-61499122b325",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "",
+                "de": "",
+                "es": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

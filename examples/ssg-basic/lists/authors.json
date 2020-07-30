@@ -1,0 +1,19 @@
+[
+  {
+    "displayName": {
+      "*": "Peter Parker"
+    },
+    "title": {
+      "en": "Hero",
+      "de": "Super Held"
+    },
+    "about": {
+      "en": "Likes spiders",
+      "de": "mag spinnen"
+    },
+    "avatar": {
+      "*": ""
+    },
+    "id": "4a5fefad-87af-4869-9c86-4b4644c5674b"
+  }
+]

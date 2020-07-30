@@ -1,0 +1,28 @@
+{
+  "name": "@proact/ssg",
+  "version": "0.1.1",
+  "description": "Proact static site generator",
+  "main": "src/cli/index.js",
+  "bin": {
+    "@proact/ssg": "bin/proact-ssg",
+    "proact-ssg": "bin/proact-ssg"
+  },
+  "scripts": {
+    "dev": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@proact/core": "workspace:^0.1.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}

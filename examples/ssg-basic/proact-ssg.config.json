@@ -1,0 +1,198 @@
+{
+  "siteName": "Proact SSG Basic Example",
+  "templateDir": "templates",
+  "assetsDir": "assets",
+  "pageCollectionDir": "pages",
+  "dataListDir": "lists",
+  "outDir": "dist",
+  "locales": ["en", "de", "es", "pt"],
+  "defaultLocale": "en",
+  "components": {
+    "blogPostLayout": {
+      "label": "Blog Post Layout",
+      "template": "layout/BlogPostLayout",
+      "props": {
+        "pageTitle": {
+          "label": "Page Title",
+          "type": "string",
+          "required": true,
+          "localize": true
+        },
+        "pageDescription": {
+          "label": "Page Description",
+          "type": "text",
+          "required": true,
+          "localize": true
+        }
+      },
+      "children": ["hero", "section"]
+    },
+    "contentPageLayout": {
+      "label": "Content Page Layout",
+      "template": "layout/ContentPageLayout",
+      "props": {
+        "pageTitle": {
+          "label": "Page Title",
+          "type": "string",
+          "required": true,
+          "localize": true
+        },
+        "pageDescription": {
+          "label": "Page Description",
+          "type": "text",
+          "required": true,
+          "localize": true
+        }
+      },
+      "children": ["hero", "section"]
+    },
+    "hero": {
+      "label": "Hero",
+      "template": "container/Hero",
+      "props": {
+        "title": {
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "localize": true
+        },
+        "leadText": {
+          "label": "Lead Text",
+          "type": "text",
+          "required": true,
+          "localize": true
+        },
+        "image": {
+          "label": "Backgound Image",
+          "type": "asset",
+          "required": true
+        }
+      },
+      "children": null
+    },
+    "section": {
+      "label": "Content Section",
+      "template": "container/Section",
+      "props": {
+        "background": {
+          "type": "select",
+          "items": [
+            { "name": "Main Content", "value": "mbg" },
+            { "name": "Grey Dark", "value": "greyDark" },
+            { "name": "Grey Light", "value": "greyLight" }
+          ],
+          "default": "mbg"
+        }
+      },
+      "children": ["markdown", "youtubeVideo"]
+    },
+    "markdown": {
+      "label": "Markdown Content",
+      "template": "content/Markdown",
+      "props": {
+        "content": {
+          "label": "Text",
+          "type": "markdown",
+          "required": true,
+          "localize": true
+        }
+      },
+      "children": null
+    },
+    "youtubeVideo": {
+      "label": "youtube video",
+      "template": "content/YouTubeVideo",
+      "props": {
+        "title": {
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "localize": true
+        },
+
+        "videoId": {
+          "label": "Video ID",
+          "type": "string",
+          "required": true,
+          "localize": true
+        }
+      },
+      "children": null
+    }
+  },
+  "pages": {
+    "blogPosts": {
+      "label": "Blog Posts",
+      "locales": ["en", "de", "es", "pt"],
+      "template": {
+        "componentId": "blogPostLayout",
+        "children": [
+          {
+            "componentId": "hero",
+            "props": {}
+          },
+          {
+            "componentId": "section",
+            "props": {
+              "background": "mbg"
+            },
+            "children": [
+              {
+                "componentId": "markdown",
+                "props": {}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "contentPages": {
+      "label": "Content Pages",
+      "locales": ["en", "de", "es", "pt"],
+      "template": {
+        "componentId": "contentPageLayout",
+        "cildren": [
+          {
+            "componentId": "section",
+            "props": {
+              "background": "mbg"
+            },
+            "children": [
+              {
+                "componentId": "markdown",
+                "props": {}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lists": {
+    "authors": {
+      "label": "Authors",
+      "locales": ["en", "de"],
+      "props": {
+        "displayName": {
+          "label": "Name",
+          "type": "string",
+          "required": true
+        },
+        "title": {
+          "label": "Job Title",
+          "localize": true,
+          "type": "string"
+        },
+        "about": {
+          "label": "About",
+          "localize": true,
+          "type": "text"
+        },
+        "avatar": {
+          "label": "Avatar",
+          "type": "asset"
+        }
+      }
+    }
+  }
+}

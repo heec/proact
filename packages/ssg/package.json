@@ -1,6 +1,6 @@
 {
   "name": "@proact/ssg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Proact static site generator",
   "main": "src/cli/index.js",
   "bin": {
@@ -12,6 +12,7 @@
   },
   "keywords": [],
   "author": "",
+  "repository": "heec/proact",
   "publishConfig": {
     "access": "public"
   },

@@ -9,6 +9,8 @@ import Button from '../../controls/Button'
 import Loader from '../../controls/Loader'
 import LocaleSelector from '../../components/LocaleSelector'
 import PageBuilderIcon from '../../icons/PageBuilder'
+import theme from '../../theme'
+import DeviceSelector from './DeviceSelector'
 import Component from './Component'
 import PagePreview from './PagePreview'
 
@@ -16,20 +18,27 @@ const SplitContent = styled.div`
   display: flex;
 `
 
-const SplitContentLeft = styled.div`
-  padding: 20px;
-  flex-grow: 1;
+const PreviewContainer = styled.div`
+  position: fixed;
+  top: ${theme.spacing(17)};
+  left: ${theme.spacing(2)};
+  right: ${theme.spacing(82)};
+  bottom: ${theme.spacing(2)};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const SplitContentRight = styled.div`
-  padding: 20px;
-  flex-basis: 33vw;
-  min-width: 640px;
+  ${theme.padding(2)};
+  margin-left: auto;
+  width: ${theme.spacing(80)};
 `
 
 export default function () {
   const { collectionName, fileName } = useParams()
   const [locale, setLocale] = useState('en')
+  const [previewDevice, setPreviewDevice] = useState('desktop')
   const { name, locales, pageContent, loaded } = useSelector(
     (state) => state.pageBuilder
   )
@@ -58,6 +67,12 @@ export default function () {
   return (
     <>
       <ToolBar title={name} icon={<PageBuilderIcon />}>
+        <DeviceSelector
+          value={previewDevice}
+          onChange={(device) => {
+            setPreviewDevice(device)
+          }}
+        />
         <LocaleSelector
           locales={locales}
           value={locale}
@@ -69,9 +84,9 @@ export default function () {
         <Button label="Save" onClick={handleSave} />
       </ToolBar>
       <SplitContent>
-        <SplitContentLeft>
-          <PagePreview locale={locale} />
-        </SplitContentLeft>
+        <PreviewContainer>
+          <PagePreview device={previewDevice} locale={locale} />
+        </PreviewContainer>
         <SplitContentRight>
           <Component
             component={pageContent}

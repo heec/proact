@@ -30,7 +30,7 @@ const ToolBarButtonGroup = styled.div`
 export default function (props) {
   const { title, icon, children } = props
   return (
-    <Root>
+    <Root className="toolbar">
       {icon && icon}
       {title && <Title>{title}</Title>}
       <ToolBarButtonGroup>{children}</ToolBarButtonGroup>

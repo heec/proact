@@ -1,0 +1,29 @@
+{
+  "name": "Sign Up",
+  "fileName": "sign-up.json",
+  "routes": {
+    "en": "/signup.html",
+    "de": "/de/signup.html",
+    "es": "/es/signup.html"
+  },
+  "id": "37bd32ec-845e-4ca0-a698-3786fbff53b2",
+  "dateCreated": "2020-07-30T15:39:37.858Z",
+  "dateLastModified": "2020-07-30T15:39:37.858Z",
+  "content": {
+    "id": "1e47648e-43db-4aa4-959a-7ce599ea132a",
+    "componentId": "contentPageLayout",
+    "props": {
+      "pageTitle": {
+        "en": "",
+        "de": "",
+        "es": ""
+      },
+      "pageDescription": {
+        "en": "",
+        "de": "",
+        "es": ""
+      }
+    },
+    "children": []
+  }
+}

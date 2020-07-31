@@ -12,6 +12,7 @@ const Button = styled.button`
   border-radius: ${theme.spacing(0.5)};
   cursor: pointer;
   ${theme.padding(0, 3)}
+  min-width: ${theme.spacing(6)};
 
   &:active {
     ${theme.elevate(1)}
@@ -25,9 +26,6 @@ const Button = styled.button`
     ${theme.elevate(1)}
   }
 
-  span {
-    ${theme.margin(0, 1)}
-  }
   &.primary {
     background-color: ${theme.colors.primary};
     color: ${theme.colors.primaryContrast};
@@ -67,7 +65,7 @@ export default function (props) {
       onClick={onClick}
     >
       {startIcon && startIcon}
-      <span>{label}</span>
+      {label}
       {endIcon && endIcon}
     </Button>
   )

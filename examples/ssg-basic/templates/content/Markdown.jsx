@@ -1,6 +1,9 @@
-import Proact from '@proact/core'
+import Proact, { UnsafeHtml } from '@proact/core'
+import MarkdownIt from 'markdown-it'
 
 export default function (props, context) {
   const { content } = props
-  return <div>{content}</div>
+  const md = new MarkdownIt()
+  const markdown = md.render(content)
+  return <UnsafeHtml html={markdown} preserveWhitespaces />
 }

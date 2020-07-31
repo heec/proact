@@ -1,3 +1,5 @@
+const path = require('path')
+const fs = require('fs')
 const express = require('express')
 const SsgAdminService = require('./SsgAdminService')
 const TemplateEngine = require('./TemplateEngine')
@@ -20,8 +22,39 @@ function routeHandler(fn) {
   }
 }
 
-async function createMiddleware(ssgConfig) {
+function createDirIfNotExists(contentRoot, dirName) {
+  const dirPath = path.join(contentRoot, dirName)
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath)
+  }
+}
+
+async function createMiddleware(app, options) {
+  const projectDir = (options && options.baseDir) || require.main.path
+
+  const cftText = fs.readFileSync(
+    path.join(projectDir, options.configFileName),
+    'utf8'
+  )
+
+  const _cfg = JSON.parse(cftText)
+  ssgConfig = {
+    ...options,
+    ..._cfg,
+    projectDir: projectDir,
+    contentDir: '',
+  }
+
+  createDirIfNotExists(ssgConfig.projectDir, ssgConfig.pageCollectionDir)
+  createDirIfNotExists(ssgConfig.projectDir, ssgConfig.dataListDir)
+  createDirIfNotExists(ssgConfig.projectDir, ssgConfig.assetsDir)
+  createDirIfNotExists(ssgConfig.projectDir, ssgConfig.outDir)
+
+  app.use(express.static(ssgConfig.assetsDir))
+  app.use(express.static(ssgConfig.outDir))
+
   const router = express.Router()
+
   const adminService = new SsgAdminService(ssgConfig)
   const templateEngine = new TemplateEngine(ssgConfig)
 
@@ -154,9 +187,22 @@ async function createMiddleware(ssgConfig) {
       })
     )
 
-  return router
+  router.route('/*').get((req, res, next) => {
+    const uiDir = path.join(__dirname, '../ui')
+
+    console.log('__dirname', __dirname)
+    console.log('uiDir', uiDir)
+    if (req.params[0].endsWith('.js') || req.params[0].endsWith('.map')) {
+      if (fs.existsSync(path.join(uiDir, req.params[0]))) {
+        return res.sendFile(path.join(uiDir, req.params[0]))
+      }
+    } else {
+      return res.sendFile(path.join(uiDir, 'index.html'))
+    }
+    next()
+  })
+
+  app.use('/admin/', router)
 }
 
-module.exports = {
-  createMiddleware,
-}
+module.exports = createMiddleware

@@ -7,7 +7,7 @@
   },
   "id": "f65e0de8-2d79-42af-bc6d-5f600099eda0",
   "dateCreated": "2020-07-30T05:17:40.258Z",
-  "dateLastModified": "2020-07-30T05:17:40.258Z",
+  "dateLastModified": "2020-07-31T14:04:33.834Z",
   "content": {
     "id": "2ae8d502-d6bc-4687-9deb-39ca6069bfd8",
     "componentId": "blogPostLayout",
@@ -40,7 +40,7 @@
         }
       },
       {
-        "id": "5574dd08-0392-45ce-b115-456b9959018b",
+        "id": "a0fa71c7-5ee7-45e1-95e7-9d613b6c8cb9",
         "componentId": "section",
         "props": {
           "background": {
@@ -49,7 +49,52 @@
         },
         "children": [
           {
-            "id": "55468217-40d6-4f89-9068-4e84beb1baf7",
+            "id": "cd219c22-228b-42a4-b9bd-e88daecafd33",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "Duis rutrum porta nunc eget vehicula. Integer tellus nibh, bibendum quis aliquam congue, vulputate id magna. Mauris convallis felis justo, et lacinia nulla viverra et. Sed viverra augue ut neque consequat, quis posuere sapien lobortis. Cras ante felis, tempus eu feugiat vitae, volutpat eget felis. Maecenas dignissim imperdiet tempor. \n\n## Donec tempus lacinia porttitor\n\nSuspendisse pharetra vel dui eget laoreet. Morbi mollis lorem vel volutpat imperdiet. Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.\n\n- Proin nunc magna, cursus quis rutrum ut, aliquam at neque.\n- Donec at ultricies augue, non ullamcorper mauris.\n- Aenean pulvinar ipsum aliquam odio rhoncus sollicitudin.\n\nDuis vel lorem at nulla aliquam pulvinar eget faucibus erat. Vestibulum commodo congue libero vitae varius. Duis efficitur tellus diam, finibus rhoncus quam dictum vel. Donec tempus lacinia porttitor. Vivamus at ultrices nisi. Vivamus enim turpis, molestie quis volutpat at, semper eu lorem. ",
+                "de": ""
+              }
+            }
+          },
+          {
+            "id": "a2506474-8b01-4887-8e4b-b9ccfb323343",
+            "componentId": "youtubeVideo",
+            "props": {
+              "title": {
+                "en": "Duis efficitur tellus diam",
+                "de": ""
+              },
+              "videoId": {
+                "en": "ZQDGJn89uNk",
+                "de": ""
+              }
+            }
+          },
+          {
+            "id": "ba390373-b6aa-4593-a792-60ff2779997d",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "## Mauris eu efficitur arcu\n\nMauris vel viverra mauris, quis pellentesque mi. Integer ultricies augue eget felis laoreet euismod. Nullam vestibulum magna nec neque condimentum suscipit. Duis dapibus cursus sapien, et porta eros sollicitudin nec. Aliquam congue quam ultrices risus aliquet tincidunt. Etiam tristique, est quis mollis venenatis, nisl felis porta velit, pulvinar feugiat erat nisi id leo. Duis et neque ac arcu consectetur aliquam. Ut posuere vel tortor ut mattis. Nulla facilisi. Pellentesque vehicula arcu quis feugiat aliquet. In eget iaculis leo, sit amet efficitur eros. \n\nDonec et lectus vestibulum, feugiat nibh vitae, ullamcorper ipsum. Morbi odio erat, ullamcorper a est eget, condimentum feugiat ligula. Proin blandit rutrum consequat.",
+                "de": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "91e82172-6e3b-4310-990a-323429890e13",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "d6e1a5e3-da29-4ef8-a868-cca40ce9f4fc",
             "componentId": "markdown",
             "props": {
               "content": {
@@ -61,5 +106,9 @@
         ]
       }
     ]
-  }
+  },
+  "locales": [
+    "en",
+    "de"
+  ]
 }

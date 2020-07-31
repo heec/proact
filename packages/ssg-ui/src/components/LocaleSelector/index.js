@@ -19,7 +19,7 @@ const Buttons = styled.div`
   grid-auto-flow: column;
   align-items: center;
   button {
-    ${theme.padding(0, 1)}
+    padding: 0;
   }
 `
 

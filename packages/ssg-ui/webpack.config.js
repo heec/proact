@@ -1,6 +1,11 @@
+const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/admin',
+  },
   module: {
     rules: [
       {
@@ -32,6 +37,9 @@ module.exports = {
         target: 'http://localhost:4567/',
         changeOrigin: true,
       },
+    },
+    historyApiFallback: {
+      index: '/admin/index.html',
     },
   },
 }

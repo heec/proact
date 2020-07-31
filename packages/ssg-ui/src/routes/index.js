@@ -12,12 +12,24 @@ import PageBuilder from './PageBuilder'
 import DataList from './DataList'
 
 const Main = styled.main`
-  padding-top: ${theme.spacing(7)};
+  padding-top: ${theme.spacing(15)};
   padding-left: ${theme.spacing(32)};
+  .toolbar {
+    position: fixed;
+    top: ${theme.spacing(7)};
+    left: ${theme.spacing(32)};
+    right: 0;
+  }
 `
 
 const PageBuilderContent = styled.main`
-  padding-top: ${theme.spacing(7)};
+  padding-top: ${theme.spacing(15)};
+  .toolbar {
+    position: fixed;
+    top: ${theme.spacing(7)};
+    left: 0;
+    right: 0;
+  }
 `
 
 export default function (props) {

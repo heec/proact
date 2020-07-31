@@ -8,8 +8,39 @@ import IconButton from '../../controls/IconButton'
 import ReloadIcon from '../../icons/Reload'
 
 const Root = styled.div`
-  background-color: #fff;
-  border: solid 1px ${theme.colors.grey};
+  &.desktop {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    border: solid 1px ${theme.colors.grey};
+    .screen {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &.tablet,
+  &.mobile {
+    ${theme.elevate(2)};
+    border-radius: ${theme.spacing(4)};
+    background-color: #222;
+    border: solid 4px ${theme.colors.greyDark};
+    ${theme.padding(4, 2)};
+    .screen {
+      background-color: #fff;
+    }
+  }
+  &.tablet {
+    .screen {
+      height: 1024px;
+      width: 768px;
+    }
+  }
+  &.mobile {
+    .screen {
+      height: 667px;
+      width: 375px;
+    }
+  }
 `
 const Header = styled.div`
   display: flex;
@@ -17,11 +48,14 @@ const Header = styled.div`
   height: ${theme.spacing(5)};
   ${theme.padding(0, 2)};
   background-color: ${theme.colors.greyLighter};
+  border-bottom: solid 1px ${theme.colors.grey};
 `
 const Content = styled.div`
+  height: calc(100% - ${theme.spacing(5)});
   iframe {
     display: block;
-    height: 600px;
+    width: 100%;
+    height: 100%;
   }
 `
 
@@ -36,7 +70,7 @@ function PreviewWindow(props) {
 }
 
 export default function (props) {
-  const { locale } = props
+  const { locale, device } = props
   const [content, setContent] = useState('')
   const [updating, setUpdating] = useState(false)
 
@@ -56,13 +90,15 @@ export default function (props) {
   }, [pageContent])
 
   return (
-    <Root>
-      <Header>
-        <IconButton icon={<ReloadIcon />} onClick={handleRenderPage} />
-      </Header>
-      <Content>
-        <PreviewWindow content={content} />
-      </Content>
+    <Root className={device}>
+      <div className="screen">
+        <Header>
+          <IconButton icon={<ReloadIcon />} onClick={handleRenderPage} />
+        </Header>
+        <Content>
+          <PreviewWindow content={content} />
+        </Content>
+      </div>
     </Root>
   )
 }

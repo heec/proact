@@ -2,7 +2,7 @@
   "name": "@proact/ssg",
   "version": "0.1.2",
   "description": "Proact static site generator",
-  "main": "src/cli/index.js",
+  "main": "index.js",
   "bin": {
     "@proact/ssg": "bin/proact-ssg",
     "proact-ssg": "bin/proact-ssg"

@@ -9,10 +9,7 @@ const actions = {
     try {
       dispatch(mutations.loadPagePending())
 
-      console.log(0)
-      console.log('fileName:', fileName)
       const page = await getPage(pageCollectionName, fileName)
-      console.log(1)
       dispatch(
         mutations.setConfiguration(
           pageCollectionName,
@@ -27,14 +24,10 @@ const actions = {
           Object.keys(page.routes)
         )
       )
-      console.log(2)
       dispatch(mutations.setPageContent(page.content))
-      console.log(3)
 
       dispatch(mutations.loadPageCompleted())
-      console.log(4)
     } catch (err) {
-      console.log(err)
       dispatch(mutations.loadPageFailed(err))
     }
   },
@@ -81,7 +74,6 @@ const actions = {
     const { pageComponentsById, pageContent } = pageBuilder
 
     // clone and insert item
-    console.log(target.index)
     const clone = JSON.parse(JSON.stringify(pageComponentsById[source.id]))
     clone.id = uuid()
     pageComponentsById[target.id].children.splice(target.index, 0, clone)

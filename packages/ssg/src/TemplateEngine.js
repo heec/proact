@@ -50,7 +50,6 @@ class TemplateEngine {
 
   async renderContent(page, locale) {
     const componentTree = this._createComponentTree(page.content, locale)
-    console.log(this.config)
     try {
       const content = await this.renderer.renderToString(RenderPage, {
         locale,

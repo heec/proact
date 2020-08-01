@@ -1,11 +1,11 @@
 import { initFetch } from '../initFetch'
 import { FetchError } from '../FetchError'
 
-export const renderContent = async (pageContent, locale) => {
+export const renderContent = async (page, locale) => {
   try {
     const response = await window.fetch(
       `/admin/api/rendercontent`,
-      initFetch('post', { pageContent, locale })
+      initFetch('post', { page, locale })
     )
     if (response.status === 200) {
       const data = await response.json()

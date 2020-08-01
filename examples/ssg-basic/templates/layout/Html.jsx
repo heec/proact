@@ -4,7 +4,7 @@ export default function (props, context) {
   const { pageTitle, pageDescription, children } = props
 
   return (
-    <html>
+    <html lang={context.locale}>
       <head>
         <meta charset="UTF-8"></meta>
         <meta

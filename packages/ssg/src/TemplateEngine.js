@@ -48,10 +48,15 @@ class TemplateEngine {
     }
   }
 
-  async renderContent(pageContent, locale) {
-    const componentTree = this._createComponentTree(pageContent, locale)
+  async renderContent(page, locale) {
+    const componentTree = this._createComponentTree(page.content, locale)
+    console.log(this.config)
     try {
       const content = await this.renderer.renderToString(RenderPage, {
+        locale,
+        locales: Object.keys(page.routes),
+        routes: page.routes,
+        lists: this.config.lists,
         content: componentTree,
       })
       return content

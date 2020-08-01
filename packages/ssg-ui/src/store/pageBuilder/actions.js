@@ -9,18 +9,30 @@ const actions = {
     try {
       dispatch(mutations.loadPagePending())
 
+      console.log(0)
+      console.log('fileName:', fileName)
       const page = await getPage(pageCollectionName, fileName)
+      console.log(1)
       dispatch(
         mutations.setConfiguration(
           pageCollectionName,
-          fileName,
-          page.name,
+          {
+            name: page.name,
+            fileName: page.fileName,
+            routes: page.routes,
+            id: page.id,
+            dateCreated: page.dateCreated,
+            dateLastModified: page.dateLastModified,
+          },
           Object.keys(page.routes)
         )
       )
+      console.log(2)
       dispatch(mutations.setPageContent(page.content))
+      console.log(3)
 
       dispatch(mutations.loadPageCompleted())
+      console.log(4)
     } catch (err) {
       console.log(err)
       dispatch(mutations.loadPageFailed(err))
@@ -29,8 +41,8 @@ const actions = {
   updatePageContent: () => async (dispatch, getState) => {
     dispatch(mutations.updatePagePending())
     const { pageBuilder } = getState()
-    const { pageCollectionName, fileName, pageContent } = pageBuilder
-    await updatePageContent(pageCollectionName, fileName, pageContent)
+    const { pageCollectionName, page, pageContent } = pageBuilder
+    await updatePageContent(pageCollectionName, page.fileName, pageContent)
     dispatch(mutations.updatePageCompleted())
   },
   addComponent: (parentId, componentId, index) => async (

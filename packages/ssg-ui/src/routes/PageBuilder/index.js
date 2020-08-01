@@ -39,7 +39,7 @@ export default function () {
   const { collectionName, fileName } = useParams()
   const [locale, setLocale] = useState('en')
   const [previewDevice, setPreviewDevice] = useState('desktop')
-  const { name, locales, pageContent, loaded } = useSelector(
+  const { page, locales, pageContent, loaded } = useSelector(
     (state) => state.pageBuilder
   )
   const dispatch = useDispatch()
@@ -66,7 +66,7 @@ export default function () {
 
   return (
     <>
-      <ToolBar title={name} icon={<PageBuilderIcon />}>
+      <ToolBar title={page.name} icon={<PageBuilderIcon />}>
         <DeviceSelector
           value={previewDevice}
           onChange={(device) => {

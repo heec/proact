@@ -2,8 +2,7 @@ import { types } from './mutations'
 
 const initialState = {
   pageCollectionName: null,
-  name: null,
-  fileName: null,
+  page: null,
   pageContent: null,
   pageComponentsById: null,
   locale: null,
@@ -46,8 +45,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageCollectionName: action.pageCollectionName,
-        fileName: action.fileName,
-        name: action.name,
+        page: action.page,
         locales: action.locales,
       }
     }

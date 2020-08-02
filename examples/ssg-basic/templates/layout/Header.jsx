@@ -4,8 +4,10 @@ export default function (props, context) {
   const {} = props
 
   return (
-    <header>
-      <a href="/">Proact SSG</a>
+    <header class="header">
+      <div class="container">
+        <a href="/">Proact SSG</a>
+      </div>
     </header>
   )
 }

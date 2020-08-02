@@ -47,7 +47,7 @@ export default function () {
   }
 
   function openPageBuilder(page) {
-    history.push(`./${collectionName}/${page.fileName}`)
+    history.push(`./${collectionName}/${page.fileName.replace('.json', '')}`)
   }
 
   return (

@@ -189,9 +189,6 @@ async function createMiddleware(app, options) {
 
   router.route('/*').get((req, res, next) => {
     const uiDir = path.join(__dirname, '../ui')
-
-    console.log('__dirname', __dirname)
-    console.log('uiDir', uiDir)
     if (req.params[0].endsWith('.js') || req.params[0].endsWith('.map')) {
       if (fs.existsSync(path.join(uiDir, req.params[0]))) {
         return res.sendFile(path.join(uiDir, req.params[0]))

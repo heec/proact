@@ -7,7 +7,7 @@
   },
   "id": "f65e0de8-2d79-42af-bc6d-5f600099eda0",
   "dateCreated": "2020-07-30T05:17:40.258Z",
-  "dateLastModified": "2020-07-31T14:04:33.834Z",
+  "dateLastModified": "2020-08-02T06:14:28.815Z",
   "content": {
     "id": "2ae8d502-d6bc-4687-9deb-39ca6069bfd8",
     "componentId": "blogPostLayout",
@@ -23,19 +23,22 @@
     },
     "children": [
       {
-        "id": "deca97db-b158-44a6-84a3-7e90ddbb27e7",
+        "id": "bb50c708-83be-4cd7-95c8-e41db75a811c",
         "componentId": "hero",
         "props": {
           "title": {
-            "en": "",
+            "en": "Duis vel lorem at nulla aliquam pulvinar eget faucibus erat",
             "de": ""
           },
           "leadText": {
-            "en": "",
+            "en": "Vestibulum commodo congue libero vitae varius. Duis efficitur tellus diam, finibus rhoncus quam dictum vel.",
             "de": ""
           },
-          "image": {
-            "*": ""
+          "backgroundImage": {
+            "*": "/images/hero-bg-02.jpg"
+          },
+          "fontColor": {
+            "*": "#222222"
           }
         }
       },
@@ -62,12 +65,8 @@
             "id": "a2506474-8b01-4887-8e4b-b9ccfb323343",
             "componentId": "youtubeVideo",
             "props": {
-              "title": {
-                "en": "Duis efficitur tellus diam",
-                "de": ""
-              },
               "videoId": {
-                "en": "ZQDGJn89uNk",
+                "en": "sBws8MSXN7A",
                 "de": ""
               }
             }

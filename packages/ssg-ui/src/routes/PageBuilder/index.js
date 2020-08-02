@@ -46,7 +46,9 @@ export default function () {
 
   useEffect(() => {
     async function loadPage() {
-      await dispatch(pageBuilderActions.loadPage(collectionName, fileName))
+      await dispatch(
+        pageBuilderActions.loadPage(collectionName, `${fileName}.json`)
+      )
     }
     if (collectionName && fileName) {
       loadPage()

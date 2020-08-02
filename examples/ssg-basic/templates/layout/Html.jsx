@@ -13,6 +13,11 @@ export default function (props, context) {
         ></meta>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription}></meta>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;800&display=swap"
+          rel="stylesheet"
+        ></link>
+        <link href="/styles.css" rel="stylesheet"></link>
       </head>
       <body>{children}</body>
     </html>

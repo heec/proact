@@ -17,7 +17,7 @@ async function cli(args) {
 
   const options = { ...defaultOptions }
 
-  app.use(bodyParser.json({ limit: '1mb' }))
+  app.use(bodyParser.json({ limit: '5mb' }))
 
   await createMiddleware(app, options)
 

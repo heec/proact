@@ -2,6 +2,8 @@ const path = require('path')
 const fs = require('fs')
 const { v4: uuid } = require('uuid')
 const asyncForEach = require('./utils/asyncForEach')
+const readJsonFile = require('./utils/readJsonFile')
+const writeJsonFile = require('./utils/writeJsonFile')
 
 class SsgAdminService {
   constructor(config) {
@@ -106,25 +108,6 @@ class SsgAdminService {
     return updatedContent
   }
 
-  async _readJsonFile(filePath) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(path.join(this.basePath, filePath), 'utf8', function (
-        err,
-        data
-      ) {
-        if (err) {
-          return reject(err)
-        }
-        try {
-          const jsonData = JSON.parse(data)
-          resolve(jsonData)
-        } catch (jsonError) {
-          return reject(jsonError)
-        }
-      })
-    })
-  }
-
   async _writeJsonFile(filePath, data) {
     return new Promise((resolve, reject) => {
       try {
@@ -151,33 +134,33 @@ class SsgAdminService {
   }
 
   async getListItems(listName) {
-    const filePath = path.join('lists', `${listName}.json`)
-    const list = await this._readJsonFile(filePath)
+    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const list = await readJsonFile(filePath)
     return list
   }
 
   async addListItem(listName, item) {
-    const filePath = path.join('lists', `${listName}.json`)
-    const list = await this._readJsonFile(filePath)
+    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const list = await readJsonFile(filePath)
     item.id = uuid()
     list.push(item)
-    await this._writeJsonFile(filePath, list)
+    await writeJsonFile(filePath, list)
     return list
   }
 
   async deleteListItem(listName, id) {
-    const filePath = path.join('lists', `${listName}.json`)
-    const list = await this._readJsonFile(filePath)
+    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const list = await readJsonFile(filePath)
     const newList = list.filter((i) => i.id !== id)
-    await this._writeJsonFile(filePath, newList)
+    await writeJsonFile(filePath, newList)
     return newList
   }
 
   async updateListItem(listName, id, item) {
-    const filePath = path.join('lists', `${listName}.json`)
-    const list = await this._readJsonFile(filePath)
+    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const list = await readJsonFile(filePath)
     const newList = list.map((i) => (i.id !== id ? i : { ...item, id: i.id }))
-    await this._writeJsonFile(filePath, newList)
+    await writeJsonFile(filePath, newList)
     return newList
   }
 
@@ -186,8 +169,8 @@ class SsgAdminService {
     const files = fs.readdirSync(dirPath)
     const items = []
     await asyncForEach(files, async (file) => {
-      const pageData = await this._readJsonFile(
-        path.join('pages', collection, file)
+      const pageData = await readJsonFile(
+        path.join(this.basePath, 'pages', collection, file)
       )
       delete pageData.content
       items.push(pageData)
@@ -196,8 +179,8 @@ class SsgAdminService {
   }
 
   async getPage(collection, fileName) {
-    const filePath = path.join('pages', collection, fileName)
-    const file = await this._readJsonFile(filePath)
+    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    const file = await readJsonFile(filePath)
     return file
   }
 
@@ -211,27 +194,32 @@ class SsgAdminService {
     const locales = Object.keys(page.routes)
     const template = this.config.pages[collection].template
     page.content = this._createPageContentFromTemplate(template, locales)
-    const filePath = path.join('pages', collection, page.fileName)
-    if (fs.existsSync(path.join(this.basePath, filePath))) {
+    const filePath = path.join(
+      this.basePath,
+      'pages',
+      collection,
+      page.fileName
+    )
+    if (fs.existsSync(filePath)) {
       throw new Error('file exists')
     }
-    await this._writeJsonFile(filePath, page)
+    await writeJsonFile(filePath, page)
   }
 
   async updatePage(collection, fileName, page) {
     const locales = Object.keys(page.routes)
     page.dateLastModified = new Date()
-    const content = this._updatePageContent(page.content, locales)
-    const filePath = path.join('pages', collection, fileName)
-    await this._writeJsonFile(filePath, page)
+    page.content = this._updatePageContent(page.content, locales)
+    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    await writeJsonFile(filePath, page)
   }
 
   async updatePageContent(collection, fileName, content) {
     const page = await this.getPage(collection, fileName)
     page.dateLastModified = new Date()
     page.content = content
-    const filePath = path.join('pages', collection, fileName)
-    await this._writeJsonFile(filePath, page)
+    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    await writeJsonFile(filePath, page)
   }
 
   async deletePage(collection, fileName) {
@@ -239,10 +227,5 @@ class SsgAdminService {
     await fs.unlinkSync(filePath)
     return { message: 'file deleted' }
   }
-
-  // async savePage(collection, page) {
-  //   await this._readJsonFile('config.json')
-  //   return config
-  // }
 }
 module.exports = SsgAdminService

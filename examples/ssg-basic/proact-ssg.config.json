@@ -62,10 +62,20 @@
           "required": true,
           "localize": true
         },
-        "image": {
+        "backgroundImage": {
           "label": "Backgound Image",
           "type": "asset",
           "required": true
+        },
+        "fontColor": {
+          "label": "Font Color",
+          "type": "select",
+          "items": [
+            { "name": "Black", "value": "#222222" },
+            { "name": "Grey", "value": "#bbbbbb" },
+            { "name": "White", "value": "#ffffff" }
+          ],
+          "default": "#222222"
         }
       },
       "children": null
@@ -77,11 +87,11 @@
         "background": {
           "type": "select",
           "items": [
-            { "name": "Main Content", "value": "mbg" },
-            { "name": "Grey Dark", "value": "greyDark" },
-            { "name": "Grey Light", "value": "greyLight" }
+            { "name": "Default", "value": "" },
+            { "name": "Grey Dark", "value": "bg-grey-dark" },
+            { "name": "Grey Light", "value": "bg-grey-light" }
           ],
-          "default": "mbg"
+          "default": ""
         }
       },
       "children": ["markdown", "youtubeVideo"]
@@ -103,13 +113,6 @@
       "label": "youtube video",
       "template": "content/YouTubeVideo",
       "props": {
-        "title": {
-          "label": "Title",
-          "type": "string",
-          "required": true,
-          "localize": true
-        },
-
         "videoId": {
           "label": "Video ID",
           "type": "string",

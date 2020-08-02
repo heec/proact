@@ -1,7 +1,11 @@
 import Proact from '@proact/core'
 
 export default function (props, context) {
-  const { children } = props
+  const { background, children } = props
 
-  return <section>{children}</section>
+  return (
+    <section class={background}>
+      <div class="container">{children}</div>
+    </section>
+  )
 }

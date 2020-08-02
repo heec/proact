@@ -11,8 +11,10 @@ export default function (props, context) {
     <Html>
       <Header />
       <main>{children}</main>
-      <section>
-        <h3>related plog posts</h3>
+      <section class="bg-grey-light">
+        <div class="container">
+          <h3>related plog posts</h3>
+        </div>
       </section>
       <Footer />
     </Html>

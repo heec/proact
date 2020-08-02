@@ -66,7 +66,7 @@ function PreviewWindow(props) {
     $iframe.current.contentWindow.document.open()
     $iframe.current.contentWindow.document.write(content)
   }, [content])
-  return <iframe ref={$iframe} frameBorder="0" width="100%" sandbox></iframe>
+  return <iframe ref={$iframe} frameBorder="0" width="100%"></iframe>
 }
 
 export default function (props) {

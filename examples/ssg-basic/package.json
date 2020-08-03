@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "proact-ssg serve"
+    "start": "proact-ssg serve",
+    "dev": "nodemon ./scripts/dev-server.js -e jsx  --watch ./templates"
   },
   "keywords": [],
   "author": "",
@@ -14,7 +15,11 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.5",
+    "@proact/core": "workspace:^0.1.5",
     "@proact/ssg": "workspace:^0.1.1",
-    "markdown-it": "^11.0.0"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "markdown-it": "^11.0.0",
+    "nodemon": "^2.0.4"
   }
 }

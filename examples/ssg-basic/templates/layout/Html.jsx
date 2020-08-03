@@ -3,6 +3,8 @@ import Proact from '@proact/core'
 export default function (props, context) {
   const { pageTitle, pageDescription, children } = props
 
+  console.log(context)
+
   return (
     <html lang={context.locale}>
       <head>

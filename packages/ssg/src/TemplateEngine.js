@@ -9,6 +9,7 @@ class TemplateEngine {
     this.templateDir = path.join(config.projectDir, config.templateDir)
     this.contentDir = path.join(config.projectDir, config.contentDir)
     this.outDir = path.join(config.projectDir, config.outDir)
+    this.projectDir = config.projectDir
     this.config = config
     this.defaultLocale = config.defaultLocale || 'en'
     this.renderer = Proact.createRenderer({ views: this.templateDir })
@@ -43,6 +44,15 @@ class TemplateEngine {
       locale,
       locales: Object.keys(page.routes),
       routes: page.routes,
+      projectDir: this.projectDir,
+      templateDir: this.templateDir,
+      outDir: this.outDir,
+    }
+    context.page = {
+      name: page.name,
+      fileName: page.fileName,
+      dateCreated: page.dateCreated,
+      dateLastModified: page.dateLastModified,
     }
     context.content = this._createComponentTree(page.content, locale)
     context.lists = {}
@@ -53,6 +63,17 @@ class TemplateEngine {
       )
     })
 
+    if (this.config.siteData) {
+      context.siteData = { ...this.config.siteData }
+    }
+
+    if (this.config.onCreateContext) {
+      let pageData = this.config.onCreateContext(this.config)
+      if (pageData instanceof Promise) {
+        pageData = await pageData
+      }
+      context.pageData = pageData
+    }
     return context
   }
 

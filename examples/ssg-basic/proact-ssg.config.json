@@ -12,6 +12,40 @@
       "label": "Blog Post Layout",
       "template": "layout/BlogPostLayout",
       "props": {
+        "title": {
+          "label": "Title",
+          "type": "string",
+          "required": true,
+          "localize": true
+        },
+        "abstract": {
+          "label": "Abstarct",
+          "type": "text",
+          "required": true,
+          "localize": true
+        },
+        "author": {
+          "label": "Author",
+          "type": "listRef",
+          "list": "authors",
+          "listTextField": "displayName",
+          "required": true
+        },
+        "backgroundImage": {
+          "label": "Backgound Image",
+          "type": "asset",
+          "required": true
+        },
+        "fontColor": {
+          "label": "Font Color",
+          "type": "select",
+          "items": [
+            { "name": "Black", "value": "#222222" },
+            { "name": "Grey", "value": "#bbbbbb" },
+            { "name": "White", "value": "#ffffff" }
+          ],
+          "default": "#222222"
+        },
         "pageTitle": {
           "label": "Page Title",
           "type": "string",
@@ -25,7 +59,7 @@
           "localize": true
         }
       },
-      "children": ["hero", "section"]
+      "children": ["section"]
     },
     "contentPageLayout": {
       "label": "Content Page Layout",
@@ -131,10 +165,6 @@
         "componentId": "blogPostLayout",
         "children": [
           {
-            "componentId": "hero",
-            "props": {}
-          },
-          {
             "componentId": "section",
             "props": {
               "background": "mbg"
@@ -174,7 +204,7 @@
   "lists": {
     "authors": {
       "label": "Authors",
-      "locales": ["en", "de"],
+      "locales": ["en", "de", "es", "pt"],
       "props": {
         "displayName": {
           "label": "Name",

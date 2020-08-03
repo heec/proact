@@ -38,14 +38,20 @@ class TemplateEngine {
     return createComponent(pageContent, locale)
   }
 
-  _createContext(page, locale) {
+  async _createContext(page, locale) {
     const context = {
       locale,
       locales: Object.keys(page.routes),
       routes: page.routes,
-      lists: this.config.lists,
     }
     context.content = this._createComponentTree(page.content, locale)
+    context.lists = {}
+
+    await asyncForEach(Object.keys(this.config.lists), async (listName) => {
+      context.lists[listName] = await readJsonFile(
+        path.join(this.config.projectDir, 'lists', `${listName}.json`)
+      )
+    })
 
     return context
   }
@@ -63,7 +69,7 @@ class TemplateEngine {
   }
 
   async renderContent(page, locale) {
-    const context = this._createContext(page, locale)
+    const context = await this._createContext(page, locale)
     try {
       const content = await this.renderer.renderToString(RenderPage, context)
       return content

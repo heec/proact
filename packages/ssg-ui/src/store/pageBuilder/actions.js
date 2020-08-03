@@ -1,13 +1,24 @@
 import { v4 as uuid } from 'uuid'
 import { createItem } from '../../utils/createItem'
 import { getPage } from '../services/pages/getPage'
+import { getListItems } from '../services/dataList/getListItems'
 import { updatePageContent } from '../services/pages/updatePageContent'
+import asyncForEach from '../../utils/asyncForEach'
 import mutations from './mutations'
 
 const actions = {
   loadPage: (pageCollectionName, fileName) => async (dispatch, getState) => {
     try {
       dispatch(mutations.loadPagePending())
+
+      // load lists
+      const { app } = getState()
+      const listsConfig = app.configuration.lists
+      const lists = {}
+      await asyncForEach(Object.keys(listsConfig), async (listName) => {
+        const items = await getListItems(listName)
+        lists[listName] = items
+      })
 
       const page = await getPage(pageCollectionName, fileName)
       dispatch(
@@ -21,7 +32,8 @@ const actions = {
             dateCreated: page.dateCreated,
             dateLastModified: page.dateLastModified,
           },
-          Object.keys(page.routes)
+          Object.keys(page.routes),
+          lists
         )
       )
       dispatch(mutations.setPageContent(page.content))

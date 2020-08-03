@@ -60,7 +60,6 @@ async function createMiddleware(app, options) {
 
   router.route('/api/configuration').get(
     routeHandler(async (req, ok, failed) => {
-      console.log(`-> /admin/api/configuration`)
       const config = await adminService.getConfiguration()
       ok(config)
     })

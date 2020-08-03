@@ -1,0 +1,85 @@
+{
+  "name": "Sample Blog Post",
+  "fileName": "sample-blog-post.json",
+  "routes": {
+    "en": "/sample-blog-post.html",
+    "de": "/de/sample-blog-post.html"
+  },
+  "id": "1303689f-0bef-4c7a-96e2-3185655d0d28",
+  "dateCreated": "2020-08-03T05:27:50.892Z",
+  "dateLastModified": "2020-08-03T07:20:41.111Z",
+  "content": {
+    "id": "2c7bf548-8b73-471f-8a91-4fe78b6f6589",
+    "componentId": "blogPostLayout",
+    "props": {
+      "title": {
+        "en": "Sample Blog Post",
+        "de": ""
+      },
+      "abstract": {
+        "en": "Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.",
+        "de": ""
+      },
+      "author": {
+        "*": "1677311e-2701-4fc9-be5c-91859518f9b2"
+      },
+      "backgroundImage": {
+        "*": "/images/hero-bg.jpg"
+      },
+      "fontColor": {
+        "*": ""
+      },
+      "pageTitle": {
+        "en": "Sample Blog Post",
+        "de": ""
+      },
+      "pageDescription": {
+        "en": "Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.",
+        "de": ""
+      }
+    },
+    "children": [
+      {
+        "id": "1a42c074-bfc6-48a4-88a9-276503b271ef",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "cf969394-60f6-406d-a231-61f3323872d1",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "Duis rutrum porta nunc eget vehicula. Integer tellus nibh, bibendum quis aliquam congue, vulputate id magna. Mauris convallis felis justo, et lacinia nulla viverra et. Sed viverra augue ut neque consequat, quis posuere sapien lobortis. Cras ante felis, tempus eu feugiat vitae, volutpat eget felis. Maecenas dignissim imperdiet tempor. \n\n## Donec tempus lacinia porttitor\n\nSuspendisse pharetra vel dui eget laoreet. Morbi mollis lorem vel volutpat imperdiet. Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.\n\n- Proin nunc magna, cursus quis rutrum ut, aliquam at neque.\n- Donec at ultricies augue, non ullamcorper mauris.\n- Aenean pulvinar ipsum aliquam odio rhoncus sollicitudin.\n\nDuis vel lorem at nulla aliquam pulvinar eget faucibus erat. Vestibulum commodo congue libero vitae varius. Duis efficitur tellus diam, finibus rhoncus quam dictum vel. Donec tempus lacinia porttitor. Vivamus at ultrices nisi. Vivamus enim turpis, molestie quis volutpat at, semper eu lorem. \n",
+                "de": ""
+              }
+            }
+          },
+          {
+            "id": "84ee772c-979b-40bf-9fc6-88868bf794a7",
+            "componentId": "youtubeVideo",
+            "props": {
+              "videoId": {
+                "en": "sBws8MSXN7A",
+                "de": ""
+              }
+            }
+          },
+          {
+            "id": "f791aade-d910-4e2a-bae6-851f4a8ec80d",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "## Mauris eu efficitur arcu\n\nMauris vel viverra mauris, quis pellentesque mi. Integer ultricies augue eget felis laoreet euismod. Nullam vestibulum magna nec neque condimentum suscipit. Duis dapibus cursus sapien, et porta eros sollicitudin nec. Aliquam congue quam ultrices risus aliquet tincidunt. Etiam tristique, est quis mollis venenatis, nisl felis porta velit, pulvinar feugiat erat nisi id leo. Duis et neque ac arcu consectetur aliquam. Ut posuere vel tortor ut mattis. Nulla facilisi. Pellentesque vehicula arcu quis feugiat aliquet. In eget iaculis leo, sit amet efficitur eros. \n\nDonec et lectus vestibulum, feugiat nibh vitae, ullamcorper ipsum. Morbi odio erat, ullamcorper a est eget, condimentum feugiat ligula. Proin blandit rutrum consequat.",
+                "de": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

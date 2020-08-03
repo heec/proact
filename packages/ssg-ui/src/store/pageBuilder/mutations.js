@@ -22,11 +22,12 @@ export default {
     type: types.LOAD_PAGE_FAILED,
     error,
   }),
-  setConfiguration: (pageCollectionName, page, locales) => ({
+  setConfiguration: (pageCollectionName, page, locales, lists) => ({
     type: types.SET_PAGE_CONFIGURATION,
     pageCollectionName,
     page,
     locales,
+    lists,
   }),
   setPageContent: (pageContent) => ({
     type: types.SET_PAGE_CONTENT,

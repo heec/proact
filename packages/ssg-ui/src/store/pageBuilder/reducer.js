@@ -7,6 +7,7 @@ const initialState = {
   pageComponentsById: null,
   locale: null,
   locales: null,
+  lists: null,
   updatePending: false,
   updateError: null,
   loaded: false,
@@ -47,6 +48,7 @@ export default (state = initialState, action) => {
         pageCollectionName: action.pageCollectionName,
         page: action.page,
         locales: action.locales,
+        lists: action.lists,
       }
     }
     case types.SET_PAGE_CONTENT: {

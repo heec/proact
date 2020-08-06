@@ -139,6 +139,7 @@ async function createMiddleware(app, options) {
       routeHandler(async (req, ok, failed) => {
         const { collection, fileName } = req.params
         await adminService.updatePageContent(collection, fileName, req.body)
+        await templateEngine.renderPage(collection, fileName)
         ok({})
       })
     )

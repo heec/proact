@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useSelector } from 'react-redux'
 
 import theme from '../../theme'
+import FormControl from './FormControl'
 
 export default function (props) {
   const { field, value, locale, onChange } = props
@@ -24,14 +25,36 @@ export default function (props) {
     setListItems(items)
   }, [field])
 
+  function handleOnChange(e) {
+    if (field.multiple) {
+      onChange({
+        target: {
+          value: Array.from(e.target.selectedOptions).map(
+            (option) => option.value
+          ),
+        },
+      })
+    } else {
+      onChange(e)
+    }
+  }
+
   return (
-    <select value={value} onChange={onChange}>
-      {listItems.map((listItem) => (
-        <option key={listItem.value} value={listItem.value}>
-          {listItem.name}
-        </option>
-      ))}
-      {!value && <option value="">Please select</option>}
-    </select>
+    <FormControl>
+      <select
+        value={value}
+        multiple={Boolean(field.multiple)}
+        onChange={handleOnChange}
+      >
+        {listItems.map((listItem) => (
+          <option key={listItem.value} value={listItem.value}>
+            {listItem.name}
+          </option>
+        ))}
+        {!Boolean(field.multiple) && !value && (
+          <option value="">Please select</option>
+        )}
+      </select>
+    </FormControl>
   )
 }

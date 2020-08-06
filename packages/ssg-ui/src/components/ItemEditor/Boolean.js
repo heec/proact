@@ -6,9 +6,12 @@ import FormControl from './FormControl'
 
 export default function (props) {
   const { field, value, locale, onChange } = props
+  function handleChange(e) {
+    onChange({ target: { value: e.target.checked } })
+  }
   return (
     <FormControl>
-      <input type="text" value={value} onChange={onChange} autoComplete="off" />
+      <input type="checkbox" checked={value} onChange={handleChange} />
     </FormControl>
   )
 }

@@ -7,7 +7,7 @@ const defaultOptions = {
   baseDir: process.cwd(),
   assetsDir: 'assets',
   outDir: 'dist',
-  port: 5500,
+  port: 4567,
 }
 
 async function start() {

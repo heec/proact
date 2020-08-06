@@ -2,10 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 
 import theme from '../../theme'
+import FormControl from './FormControl'
 
 export default function (props) {
-  const { config, value, locale, onChange } = props
+  const { field, value, locale, onChange } = props
   return (
-    <textarea value={value} onChange={onChange} autoComplete="off"></textarea>
+    <FormControl>
+      <textarea value={value} onChange={onChange} autoComplete="off"></textarea>
+    </FormControl>
   )
 }

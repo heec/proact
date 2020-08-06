@@ -11,6 +11,9 @@ class SsgAdminService {
     this.config = config
 
     // todo: validate directories and configuration
+
+    // update config changes
+    this.updateConfigChanges()
   }
 
   _getDefaultPropValue(def) {
@@ -22,12 +25,18 @@ class SsgAdminService {
       case 'int':
       case 'float':
         return 0
+      case 'boolean':
+        console.log('create boolean prop')
+        return false
       case 'string':
       case 'text':
       case 'markdown':
       case 'asset':
       case 'select':
         return ''
+      case 'listRef':
+      case 'pageRef':
+        return def.multiple ? [] : ''
       default:
         return ''
     }
@@ -108,6 +117,101 @@ class SsgAdminService {
     return updatedContent
   }
 
+  _updatePropsChanges(props, propsConfig, locales) {
+    const newProps = {}
+    Object.keys(propsConfig).forEach((propName) => {
+      const propConfig = propsConfig[propName]
+      const { localize } = propConfig
+      newProps[propName] = {}
+      if (props[propName]) {
+        if (localize) {
+          locales.forEach((loc) => {
+            newProps[propName][loc] =
+              props[propName][loc] || this._getDefaultPropValue(propConfig)
+          })
+        } else {
+          newProps[propName]['*'] =
+            props[propName]['*'] || this._getDefaultPropValue(propConfig)
+        }
+      } else {
+        if (localize) {
+          locales.forEach((loc) => {
+            newProps[propName][loc] = this._getDefaultPropValue(propConfig)
+          })
+        } else {
+          newProps[propName]['*'] = this._getDefaultPropValue(propConfig)
+        }
+      }
+    })
+    return newProps
+  }
+
+  async _updateListChanges(listName) {
+    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const list = await readJsonFile(filePath)
+    const listConfig = this.config.lists[listName]
+    const updatedList = []
+    list.forEach((item) => {
+      const updatedProps = this._updatePropsChanges(
+        item,
+        listConfig.props,
+        listConfig.locales
+      )
+      updatedList.push({ id: item.id, ...updatedProps })
+    })
+    await writeJsonFile(filePath, updatedList)
+    console.log(`list '${listName}' updated`)
+  }
+
+  async _updatePageCollectionChanges(pageCollectionName) {
+    const dirPath = path.join(this.basePath, 'pages', pageCollectionName)
+    const files = fs.readdirSync(dirPath)
+
+    const _self = this
+    function updateComponent(component, locales) {
+      const propsConfig = _self.config.components[component.componentId].props
+      component.props = component.props = _self._updatePropsChanges(
+        component.props,
+        propsConfig,
+        locales
+      )
+      if (component.children) {
+        component.children.forEach((child) => {
+          updateComponent(child, locales)
+        })
+      }
+      return component
+    }
+
+    await asyncForEach(files, async (file) => {
+      const fileName = path.join(
+        this.basePath,
+        'pages',
+        pageCollectionName,
+        file
+      )
+      const page = await readJsonFile(fileName)
+      updateComponent(page.content, Object.keys(page.routes))
+      await writeJsonFile(fileName, page)
+
+      console.log(`page '${pageCollectionName}/${file}' updated`)
+    })
+  }
+
+  async updateConfigChanges() {
+    // update all lists
+    await asyncForEach(Object.keys(this.config.lists), async (listName) => {
+      await this._updateListChanges(listName)
+    })
+
+    await asyncForEach(
+      Object.keys(this.config.pages),
+      async (pageCollectionName) => {
+        await this._updatePageCollectionChanges(pageCollectionName)
+      }
+    )
+  }
+
   async _writeJsonFile(filePath, data) {
     return new Promise((resolve, reject) => {
       try {
@@ -136,14 +240,25 @@ class SsgAdminService {
   async getListItems(listName) {
     const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
     const list = await readJsonFile(filePath)
+    const listConfig = this.config.lists[listName]
+    list.forEach((item) => {
+      const id = item.id
+      const x = this._updatePropsChanges(
+        item,
+        listConfig.props,
+        listConfig.locales
+      )
+      x.id = id
+      console.log(x)
+    })
+
     return list
   }
 
   async addListItem(listName, item) {
     const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
     const list = await readJsonFile(filePath)
-    item.id = uuid()
-    list.push(item)
+    list.push({ id: uuid(), ...item })
     await writeJsonFile(filePath, list)
     return list
   }

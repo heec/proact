@@ -1,6 +1,6 @@
 {
   "name": "@proact/ssg",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Proact static site generator",
   "main": "index.js",
   "bin": {

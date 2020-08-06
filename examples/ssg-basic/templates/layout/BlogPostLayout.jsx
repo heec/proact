@@ -18,7 +18,7 @@ export default function (props, context) {
   } = props
 
   return (
-    <Html pageTitle={pageTitle} pageDescription={pageDescription}>
+    <Html pageTitle={title} pageDescription={abstract}>
       <Header />
       <main>
         <Hero

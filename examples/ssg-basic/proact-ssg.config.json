@@ -16,19 +16,28 @@
           "label": "Title",
           "type": "string",
           "required": true,
-          "localize": true
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 60
         },
         "abstract": {
-          "label": "Abstarct",
+          "label": "Abstract",
           "type": "text",
           "required": true,
-          "localize": true
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 160
         },
         "author": {
           "label": "Author",
           "type": "listRef",
           "list": "authors",
           "listTextField": "displayName",
+          "required": true
+        },
+        "publishDate": {
+          "label": "Publish Date",
+          "type": "date",
           "required": true
         },
         "backgroundImage": {
@@ -46,17 +55,11 @@
           ],
           "default": "#222222"
         },
-        "pageTitle": {
-          "label": "Page Title",
-          "type": "string",
-          "required": true,
-          "localize": true
-        },
-        "pageDescription": {
-          "label": "Page Description",
-          "type": "text",
-          "required": true,
-          "localize": true
+        "relatedPosts": {
+          "label": "Related Blog Posts",
+          "type": "pageRef",
+          "pageCollection": "blogPosts",
+          "multiple": true
         }
       },
       "children": ["section"]
@@ -210,11 +213,6 @@
           "label": "Name",
           "type": "string",
           "required": true
-        },
-        "title": {
-          "label": "Job Title",
-          "localize": true,
-          "type": "string"
         },
         "about": {
           "label": "About",

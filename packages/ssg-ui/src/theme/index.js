@@ -6,7 +6,7 @@ export default {
   colors,
   fontSize: {
     default: '16px',
-    small: '13px',
+    small: '14px',
     large: '18px',
     h1: '34px',
     h2: '26px',

@@ -1,0 +1,59 @@
+{
+  "name": "test",
+  "fileName": "test.json",
+  "routes": {
+    "en": "/test/"
+  },
+  "id": "59706699-d059-4cbd-b0e1-cecdc37334a7",
+  "dateCreated": "2020-08-06T11:24:32.451Z",
+  "dateLastModified": "2020-08-06T11:31:30.738Z",
+  "content": {
+    "id": "79fc810b-205d-4cb0-ad96-8c5243ac13ed",
+    "componentId": "blogPostLayout",
+    "props": {
+      "title": {
+        "en": ""
+      },
+      "abstract": {
+        "en": ""
+      },
+      "author": {
+        "*": ""
+      },
+      "publishDate": {
+        "*": ""
+      },
+      "backgroundImage": {
+        "*": ""
+      },
+      "fontColor": {
+        "*": ""
+      },
+      "relatedPosts": {
+        "*": []
+      }
+    },
+    "children": [
+      {
+        "id": "f4e28ff8-bfa7-4d1e-8e68-c051022ae6f8",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "a742a9f8-65ca-4030-bb86-bd56f864dff7",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

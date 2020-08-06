@@ -11,6 +11,7 @@ export default {
   grey: '#c8c8c8',
   greyDark: '#777',
   greyDarker: '#444',
+  error: '#ff0000',
 }
 
 // 183059

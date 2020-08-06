@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const Proact = require('@proact/core')
 const RenderPage = require('./RenderPage')
 const readJsonFile = require('./utils/readJsonFile')
@@ -77,16 +78,26 @@ class TemplateEngine {
     return context
   }
 
-  async renderPage(page) {
-    try {
-      const content = await this.renderer.renderToString(
-        RenderPage,
-        pageContent
-      )
-      return content
-    } catch (err) {
-      console.log(err)
-    }
+  async renderPage(collection, fileName) {
+    const page = await readJsonFile(
+      path.join(this.projectDir, 'pages', collection, fileName)
+    )
+
+    const locales = Object.keys(page.routes)
+    await asyncForEach(locales, async (locale) => {
+      let content = await this.renderContent(page, locale)
+      content = content.replace(/>\s+</g, '><')
+      let fileName = path.join(this.outDir, page.routes[locale])
+
+      if (fileName.endsWith(path.sep)) {
+        fileName += 'index.html'
+      }
+
+      const dirName = path.dirname(fileName)
+
+      fs.mkdirSync(path.dirname(fileName), { recursive: true })
+      fs.writeFileSync(fileName, content, 'utf8')
+    })
   }
 
   async renderContent(page, locale) {

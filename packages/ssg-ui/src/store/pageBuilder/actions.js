@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid'
 import { createItem } from '../../utils/createItem'
 import { getPage } from '../services/pages/getPage'
+import { getPageCollection } from '../services/pages/getPageCollection'
 import { getListItems } from '../services/dataList/getListItems'
 import { updatePageContent } from '../services/pages/updatePageContent'
 import asyncForEach from '../../utils/asyncForEach'
@@ -20,6 +21,16 @@ const actions = {
         lists[listName] = items
       })
 
+      const pagesConfig = app.configuration.pages
+      const pageCollections = {}
+      await asyncForEach(
+        Object.keys(pagesConfig),
+        async (pageCollectionName) => {
+          const pages = await getPageCollection(pageCollectionName)
+          pageCollections[pageCollectionName] = pages
+        }
+      )
+
       const page = await getPage(pageCollectionName, fileName)
       dispatch(
         mutations.setConfiguration(
@@ -33,7 +44,8 @@ const actions = {
             dateLastModified: page.dateLastModified,
           },
           Object.keys(page.routes),
-          lists
+          lists,
+          pageCollections
         )
       )
       dispatch(mutations.setPageContent(page.content))

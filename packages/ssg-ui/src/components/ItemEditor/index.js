@@ -7,24 +7,26 @@ import theme from '../../theme'
 import Field from './Field'
 
 const Row = styled.div`
-  ${theme.margin(2, 0)}
+  ${theme.margin(2.5, 0)}
 `
 
 const Label = styled.label`
   font-size: ${theme.fontSize.small};
+  font-weight: 600;
 `
 
-const FormControl = styled.div`
+const Locale = styled.span`
+  font-size: ${theme.fontSize.small};
+  color: ${theme.colors.greyDark};
+`
+
+const FormLabel = styled.div`
+  /* 
   display: flex;
-  border: solid 1px ${theme.colors.greyLight};
-  ${theme.margin(0.5, 0)};
-  ${theme.padding(0.5)};
-  input,
-  select,
-  textarea {
-    flex-basis: 100%;
-    border: none;
-  }
+  justify-content: space-between; 
+  align-items: center;
+  */
+  ${theme.margin(0.5, 0)}
 `
 
 function Property(props) {
@@ -45,17 +47,21 @@ function Property(props) {
 
   return (
     <Row>
-      <Label>
-        {field.label} {field.localize && <span>({locale})</span>}
-      </Label>
-      <FormControl>
-        <Field
-          field={field}
-          value={value[locale]}
-          locale={locale}
-          onChange={handleChange}
-        />
-      </FormControl>
+      <FormLabel>
+        <Label>{field.label}</Label>
+        {!field.localize && <Locale> (all locales)</Locale>}
+        {/*field.localize && (
+          <Locale>
+            Locale: <strong>{locale}</strong>
+          </Locale>
+        )*/}
+      </FormLabel>
+      <Field
+        field={field}
+        value={value[locale]}
+        locale={locale}
+        onChange={handleChange}
+      />
     </Row>
   )
 }

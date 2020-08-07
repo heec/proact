@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.10.4",
     "@babel/preset-react": "^7.10.4",
     "@babel/register": "^7.10.5",
-    "@proact/ssg": "workspace:^0.1.7",
+    "@proact/ssg": "workspace:^0.1.8",
     "express": "^4.17.1"
   }
 }

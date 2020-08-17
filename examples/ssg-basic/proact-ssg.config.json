@@ -12,34 +12,6 @@
       "label": "Blog Post Layout",
       "template": "layout/BlogPostLayout",
       "props": {
-        "title": {
-          "label": "Title",
-          "type": "string",
-          "required": true,
-          "localize": true,
-          "minLength": 20,
-          "maxLength": 60
-        },
-        "abstract": {
-          "label": "Abstract",
-          "type": "text",
-          "required": true,
-          "localize": true,
-          "minLength": 20,
-          "maxLength": 160
-        },
-        "author": {
-          "label": "Author",
-          "type": "listRef",
-          "list": "authors",
-          "listTextField": "displayName",
-          "required": true
-        },
-        "publishDate": {
-          "label": "Publish Date",
-          "type": "date",
-          "required": true
-        },
         "backgroundImage": {
           "label": "Backgound Image",
           "type": "asset",
@@ -54,12 +26,6 @@
             { "name": "White", "value": "#ffffff" }
           ],
           "default": "#222222"
-        },
-        "relatedPosts": {
-          "label": "Related Blog Posts",
-          "type": "pageRef",
-          "pageCollection": "blogPosts",
-          "multiple": true
         }
       },
       "children": ["section"]
@@ -165,21 +131,39 @@
       "label": "Blog Posts",
       "locales": ["en", "de", "es", "pt"],
       "props": {
-        "pageTitle": {
-          "label": "Page Title",
+        "title": {
+          "label": "Title",
           "type": "string",
           "required": true,
           "localize": true,
           "minLength": 20,
           "maxLength": 60
         },
-        "description": {
-          "label": "Meta Description",
-          "type": "string",
+        "abstract": {
+          "label": "Abstract",
+          "type": "text",
           "required": true,
           "localize": true,
           "minLength": 20,
           "maxLength": 160
+        },
+        "author": {
+          "label": "Author",
+          "type": "listRef",
+          "list": "authors",
+          "listTextField": "displayName",
+          "required": true
+        },
+        "publishDate": {
+          "label": "Publish Date",
+          "type": "date",
+          "required": true
+        },
+        "relatedPosts": {
+          "label": "Related Blog Posts",
+          "type": "pageRef",
+          "pageCollection": "blogPosts",
+          "multiple": true
         }
       },
       "template": {

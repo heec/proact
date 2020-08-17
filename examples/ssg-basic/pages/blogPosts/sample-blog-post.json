@@ -9,41 +9,33 @@
   "dateCreated": "2020-08-03T05:27:50.892Z",
   "dateLastModified": "2020-08-15T08:34:05.795Z",
   "props": {
-    "pageTitle": {
-      "en": "Sample Blog Post",
-      "de": ""
-    },
-    "description": {
+    "title": {
       "en": "",
       "de": ""
+    },
+    "abstract": {
+      "en": "",
+      "de": ""
+    },
+    "author": {
+      "*": ""
+    },
+    "publishDate": {
+      "*": ""
+    },
+    "relatedPosts": {
+      "*": []
     }
   },
   "content": {
     "id": "2c7bf548-8b73-471f-8a91-4fe78b6f6589",
     "componentId": "blogPostLayout",
     "props": {
-      "title": {
-        "en": "Sample Blog Post",
-        "de": ""
-      },
-      "abstract": {
-        "en": "Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.",
-        "de": ""
-      },
-      "author": {
-        "*": "1677311e-2701-4fc9-be5c-91859518f9b2"
-      },
-      "publishDate": {
-        "*": ""
-      },
       "backgroundImage": {
-        "*": "/images/hero-bg.jpg"
+        "*": ""
       },
       "fontColor": {
         "*": ""
-      },
-      "relatedPosts": {
-        "*": []
       }
     },
     "children": [

@@ -19,7 +19,7 @@ importers:
       '@babel/preset-env': ^7.10.4
       '@babel/preset-react': ^7.10.4
       '@babel/register': ^7.10.5
-      '@proact/ssg': 'workspace:^0.1.1'
+      '@proact/ssg': 'workspace:^0.1.8'
       body-parser: ^1.19.0
       express: ^4.17.1
       markdown-it: ^10.0.0
@@ -39,7 +39,7 @@ importers:
       '@babel/preset-env': ^7.10.4
       '@babel/preset-react': ^7.10.4
       '@babel/register': ^7.10.5
-      '@proact/ssg': 'workspace:^0.1.1'
+      '@proact/ssg': 'workspace:^0.1.8'
       express: ^4.17.1
   examples/render-to-string:
     dependencies:
@@ -53,7 +53,7 @@ importers:
       '@babel/preset-env': ^7.10.4
       '@babel/preset-react': ^7.10.4
       '@babel/register': ^7.10.5
-      '@proact/core': 'workspace:^0.1.2'
+      '@proact/core': 'workspace:^0.1.8'
   examples/ssg-basic:
     dependencies:
       '@babel/core': 7.10.5
@@ -71,8 +71,8 @@ importers:
       '@babel/preset-env': ^7.10.4
       '@babel/preset-react': ^7.10.4
       '@babel/register': ^7.10.5
-      '@proact/core': 'workspace:^0.1.5'
-      '@proact/ssg': 'workspace:^0.1.5'
+      '@proact/core': 'workspace:^0.1.8'
+      '@proact/ssg': 'workspace:^0.1.8'
       body-parser: ^1.19.0
       express: ^4.17.1
       markdown-it: ^11.0.0

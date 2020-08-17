@@ -8,7 +8,7 @@ import FormControl from './FormControl'
 export default function (props) {
   const { field, value, locale, onChange } = props
   const [listItems, setListItems] = useState([])
-  const { lists } = useSelector((state) => state.pageBuilder)
+  const { lists } = useSelector((state) => state.app)
 
   useEffect(() => {
     const { list, listTextField, localize } = field

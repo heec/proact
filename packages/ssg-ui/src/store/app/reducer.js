@@ -4,6 +4,8 @@ const initialState = {
   initialized: false,
   configuration: null,
   error: null,
+  lists: null,
+  pageCollections: null,
 }
 
 export default (state = initialState, action) => {
@@ -26,6 +28,20 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.error,
+      }
+    }
+
+    case types.SET_LISTS: {
+      return {
+        ...state,
+        lists: action.lists,
+      }
+    }
+    
+    case types.SET_PAGE_COLLECTIONS: {
+      return {
+        ...state,
+        pageCollections: action.pageCollections,
       }
     }
 

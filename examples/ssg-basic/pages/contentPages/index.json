@@ -9,6 +9,18 @@
   "id": "b815b49d-a9b1-477d-93ba-1c2c07ca5ec8",
   "dateCreated": "2020-07-30T05:25:21.705Z",
   "dateLastModified": "2020-07-30T05:34:37.941Z",
+  "props": {
+    "pageTitle": {
+      "en": "",
+      "de": "",
+      "es": ""
+    },
+    "pageDescription": {
+      "en": "",
+      "de": "",
+      "es": ""
+    }
+  },
   "content": {
     "id": "6b33ada4-c2e9-46bc-9712-f94207be83c1",
     "componentId": "contentPageLayout",

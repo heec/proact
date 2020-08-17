@@ -164,6 +164,24 @@
     "blogPosts": {
       "label": "Blog Posts",
       "locales": ["en", "de", "es", "pt"],
+      "props": {
+        "pageTitle": {
+          "label": "Page Title",
+          "type": "string",
+          "required": true,
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 60
+        },
+        "description": {
+          "label": "Meta Description",
+          "type": "string",
+          "required": true,
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 160
+        }
+      },
       "template": {
         "componentId": "blogPostLayout",
         "children": [
@@ -185,6 +203,24 @@
     "contentPages": {
       "label": "Content Pages",
       "locales": ["en", "de", "es", "pt"],
+      "props": {
+        "pageTitle": {
+          "label": "Page Title",
+          "type": "string",
+          "required": true,
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 60
+        },
+        "pageDescription": {
+          "label": "Meta Description",
+          "type": "string",
+          "required": true,
+          "localize": true,
+          "minLength": 20,
+          "maxLength": 160
+        }
+      },
       "template": {
         "componentId": "contentPageLayout",
         "cildren": [

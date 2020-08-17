@@ -1,14 +1,28 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useRef, useEffect } from 'react'
 
-import theme from '../../theme'
 import FormControl from './FormControl'
 
 export default function (props) {
   const { field, value, locale, onChange } = props
+
+  const $textarea = useRef()
+
+  useEffect(() => {
+    $textarea.current.style.height = 'auto'
+    $textarea.current.style.height = `${$textarea.current.scrollHeight}px`
+  }, [value])
+
   return (
     <FormControl>
-      <textarea value={value} onChange={onChange} autoComplete="off"></textarea>
+      <textarea
+        ref={$textarea}
+        value={value}
+        onChange={onChange}
+        onBlur={() => {
+          setEditMode(false)
+        }}
+        autoComplete="off"
+      ></textarea>
     </FormControl>
   )
 }

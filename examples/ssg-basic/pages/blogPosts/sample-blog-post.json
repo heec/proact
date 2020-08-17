@@ -7,7 +7,17 @@
   },
   "id": "1303689f-0bef-4c7a-96e2-3185655d0d28",
   "dateCreated": "2020-08-03T05:27:50.892Z",
-  "dateLastModified": "2020-08-06T11:35:09.156Z",
+  "dateLastModified": "2020-08-15T08:34:05.795Z",
+  "props": {
+    "pageTitle": {
+      "en": "Sample Blog Post",
+      "de": ""
+    },
+    "description": {
+      "en": "",
+      "de": ""
+    }
+  },
   "content": {
     "id": "2c7bf548-8b73-471f-8a91-4fe78b6f6589",
     "componentId": "blogPostLayout",

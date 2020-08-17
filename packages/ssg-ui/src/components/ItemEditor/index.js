@@ -18,6 +18,8 @@ const Label = styled.label`
 const Locale = styled.span`
   font-size: ${theme.fontSize.small};
   color: ${theme.colors.greyDark};
+  display: inline-block;
+  margin-left: ${theme.spacing(1)};
 `
 
 const FormLabel = styled.div`
@@ -49,12 +51,7 @@ function Property(props) {
     <Row>
       <FormLabel>
         <Label>{field.label}</Label>
-        {!field.localize && <Locale> (all locales)</Locale>}
-        {/*field.localize && (
-          <Locale>
-            Locale: <strong>{locale}</strong>
-          </Locale>
-        )*/}
+        <Locale>({field.localize ? locale : 'all locales'})</Locale>
       </FormLabel>
       <Field
         field={field}

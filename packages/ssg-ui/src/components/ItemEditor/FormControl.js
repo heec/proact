@@ -14,6 +14,15 @@ const FormControl = styled.div`
     flex-basis: 100%;
     border: none;
   }
+  .react-datepicker-wrapper {
+    width: 100%;
+    > div {
+      display: block;
+      > input {
+        width: 100%;
+      }
+    }
+  }
 `
 
 export default function (props) {

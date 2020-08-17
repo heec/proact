@@ -14,8 +14,8 @@ const Popup = styled.div`
   background-color: #fff;
   z-index: 2;
   overflow: hidden;
-  max-width: 500px;
-  min-width: 300px;
+  max-width: 720px;
+  min-width: 480px;
   ${theme.elevate(2)};
   flex-grow: 1;
 `
@@ -35,7 +35,7 @@ const Title = styled.h4`
 `
 
 const Content = styled.div`
-  ${theme.padding(2)};
+  ${theme.padding(2, 2)};
   max-height: calc(100vh - 60px);
   overflow: auto;
 `

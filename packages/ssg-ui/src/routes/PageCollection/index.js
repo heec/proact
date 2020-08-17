@@ -74,7 +74,10 @@ export default function () {
                   <td>
                     {Object.keys(item.routes).map((loc) => (
                       <div key={loc}>
-                        <strong>{loc}:</strong> {item.routes[loc]}
+                        <strong>{loc}:</strong>
+                        <a href={item.routes[loc]} target="_blank">
+                          {item.routes[loc]}
+                        </a>
                       </div>
                     ))}
                   </td>

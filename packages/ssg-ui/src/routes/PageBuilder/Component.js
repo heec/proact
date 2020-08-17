@@ -44,6 +44,10 @@ const Editor = styled.div`
   padding: 16px;
 `
 
+const Draggable = styled.div`
+  cursor: move;
+`
+
 function DragHandle(props) {
   const { data, children } = props
   const $dragHandle = useRef()
@@ -65,9 +69,9 @@ function DragHandle(props) {
   }, [])
 
   return (
-    <div draggable ref={$dragHandle}>
+    <Draggable draggable ref={$dragHandle}>
       {children}
-    </div>
+    </Draggable>
   )
 }
 

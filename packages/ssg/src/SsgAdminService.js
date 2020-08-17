@@ -167,6 +167,8 @@ class SsgAdminService {
     const dirPath = path.join(this.basePath, 'pages', pageCollectionName)
     const files = fs.readdirSync(dirPath)
 
+    const pageCollectionConfig = this.config.pages[pageCollectionName]
+
     const _self = this
     function updateComponent(component, locales) {
       const propsConfig = _self.config.components[component.componentId].props
@@ -191,6 +193,15 @@ class SsgAdminService {
         file
       )
       const page = await readJsonFile(fileName)
+
+      const pageLocales = Object.keys(page.routes)
+
+      page.props = this._updatePropsChanges(
+        page.props,
+        pageCollectionConfig.props,
+        pageLocales
+      )
+
       updateComponent(page.content, Object.keys(page.routes))
       await writeJsonFile(fileName, page)
 

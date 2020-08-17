@@ -1,4 +1,5 @@
 node_modules
 dist
+todo.md
 .cache
 .vscode

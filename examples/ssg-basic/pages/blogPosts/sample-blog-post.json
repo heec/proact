@@ -7,24 +7,26 @@
   },
   "id": "1303689f-0bef-4c7a-96e2-3185655d0d28",
   "dateCreated": "2020-08-03T05:27:50.892Z",
-  "dateLastModified": "2020-08-15T08:34:05.795Z",
+  "dateLastModified": "2020-08-18T08:38:36.365Z",
   "props": {
     "title": {
-      "en": "",
+      "en": "Sample Blog Post",
       "de": ""
     },
     "abstract": {
-      "en": "",
+      "en": "Etiam commodo nec lacus eu placerat. Vivamus malesuada, quam non rhoncus scelerisque, nisl lacus hendrerit sapien, sed pretium magna leo non nisi.",
       "de": ""
     },
     "author": {
-      "*": ""
+      "*": "4a5fefad-87af-4869-9c86-4b4644c5674b"
     },
     "publishDate": {
-      "*": ""
+      "*": "2020-08-17T22:00:00.000Z"
     },
     "relatedPosts": {
-      "*": []
+      "*": [
+        "blogPosts/sample-blog-post.json"
+      ]
     }
   },
   "content": {
@@ -81,5 +83,9 @@
         ]
       }
     ]
-  }
+  },
+  "locales": [
+    "en",
+    "de"
+  ]
 }

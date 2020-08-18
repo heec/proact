@@ -5,6 +5,86 @@ const RenderPage = require('./RenderPage')
 const readJsonFile = require('./utils/readJsonFile')
 const asyncForEach = require('./utils/asyncForEach')
 
+class SsgContext {
+  constructor(config, locale) {
+    this.config = config
+    this.locale = locale
+    this._listCache = {}
+    this._pageCollectionCache = {}
+  }
+
+  async getList(listName) {
+    if (!this.config.lists.hasOwnProperty(listName)) {
+      throw new Error(`unknown list ${listName}`)
+    }
+
+    if (!this._listCache.hasOwnProperty(listName)) {
+      const list = await readJsonFile(
+        path.join(this.config.projectDir, 'lists', `${listName}.json`)
+      )
+      const listProps = this.config.lists[listName].props
+      const items = []
+      list.forEach((item) => {
+        const newItem = {}
+        Object.keys(listProps).forEach((propName) => {
+          const loc = listProps[propName].localize ? this.locale : '*'
+          newItem[propName] = item[propName][loc]
+        })
+        newItem.id = item.id
+        items.push(newItem)
+      })
+
+      this._listCache[listName] = items
+    }
+
+    return this._listCache[listName]
+  }
+
+  async getListItem(listName, id) {
+    const list = await this.getList(listName)
+    return list.find((item) => item.id === id)
+  }
+
+  async getPageCollection(pageCollectionName) {
+    if (!this.config.pages.hasOwnProperty(pageCollectionName)) {
+      throw new Error(`unknown page collection ${pageCollectionName}`)
+    }
+
+    if (!this._pageCollectionCache.hasOwnProperty(pageCollectionName)) {
+      const dirPath = path.join(
+        this.config.projectDir,
+        'pages',
+        pageCollectionName
+      )
+      const files = fs.readdirSync(dirPath)
+      const items = []
+      await asyncForEach(files, async (file) => {
+        const pageData = await readJsonFile(path.join(dirPath, file))
+        delete pageData.content
+
+        const pageProps = this.config.pages[pageCollectionName].props
+        const newProps = {}
+        Object.keys(pageProps).forEach((propName) => {
+          const loc = pageProps[propName].localize ? this.locale : '*'
+          newProps[propName] = pageData.props[propName][loc]
+        })
+        pageData.props = newProps
+
+        items.push(pageData)
+      })
+
+      this._pageCollectionCache[pageCollectionName] = items
+    }
+
+    return this._pageCollectionCache[pageCollectionName]
+  }
+
+  async getPage(pageCollectionName, fileName) {
+    const pageCollection = await this.getPageCollection(pageCollectionName)
+    return pageCollection.find((item) => item.fileName === fileName)
+  }
+}
+
 class TemplateEngine {
   constructor(config) {
     this.templateDir = path.join(config.projectDir, config.templateDir)
@@ -40,7 +120,7 @@ class TemplateEngine {
     return createComponent(pageContent, locale)
   }
 
-  async _createContext(page, locale) {
+  async _createContext(collection, page, locale) {
     const context = {
       locale,
       locales: Object.keys(page.routes),
@@ -49,20 +129,24 @@ class TemplateEngine {
       templateDir: this.templateDir,
       outDir: this.outDir,
     }
+
     context.page = {
       name: page.name,
       fileName: page.fileName,
       dateCreated: page.dateCreated,
       dateLastModified: page.dateLastModified,
+      props: {},
     }
-    context.content = this._createComponentTree(page.content, locale)
-    context.lists = {}
 
-    await asyncForEach(Object.keys(this.config.lists), async (listName) => {
-      context.lists[listName] = await readJsonFile(
-        path.join(this.config.projectDir, 'lists', `${listName}.json`)
-      )
+    const pageProps = this.config.pages[collection].props
+    Object.keys(page.props).forEach((propName) => {
+      const loc = pageProps[propName].localize ? locale : '*'
+      context.page.props[propName] = page.props[propName][loc]
     })
+
+    context.content = this._createComponentTree(page.content, locale)
+
+    context.ssg = new SsgContext(this.config, locale)
 
     if (this.config.siteData) {
       context.siteData = { ...this.config.siteData }
@@ -85,7 +169,7 @@ class TemplateEngine {
 
     const locales = Object.keys(page.routes)
     await asyncForEach(locales, async (locale) => {
-      let content = await this.renderContent(page, locale)
+      let content = await this.renderContent(collection, page, locale)
       content = content.replace(/>\s+</g, '><')
       let fileName = path.join(this.outDir, page.routes[locale])
 
@@ -100,8 +184,8 @@ class TemplateEngine {
     })
   }
 
-  async renderContent(page, locale) {
-    const context = await this._createContext(page, locale)
+  async renderContent(collection, page, locale) {
+    const context = await this._createContext(collection, page, locale)
     try {
       const content = await this.renderer.renderToString(RenderPage, context)
       return content

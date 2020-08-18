@@ -1,2 +1,2 @@
 const createMiddleware = require('./src/createMiddleware')
-module.exports = createMiddleware
+module.exports = { createMiddleware }

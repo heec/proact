@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const ssgMiddleware = require('@proact/ssg')
+const ssg = require('@proact/ssg')
 
 const defaultOptions = {
   configFileName: 'proact-ssg.config.json',
@@ -19,7 +19,7 @@ async function start() {
 
   app.use(bodyParser.json({ limit: '5mb' }))
 
-  await ssgMiddleware(app, options)
+  await ssg.createMiddleware(app, options)
 
   app.listen(options.port, function () {
     console.log(

@@ -74,11 +74,17 @@ export default function (props) {
   const [content, setContent] = useState('')
   const [updating, setUpdating] = useState(false)
 
-  const { page, pageContent } = useSelector((state) => state.pageBuilder)
+  const { pageCollectionName, page, pageContent } = useSelector(
+    (state) => state.pageBuilder
+  )
 
   async function handleRenderPage() {
     setUpdating(true)
-    const res = await renderContent({ ...page, content: pageContent }, locale)
+    const res = await renderContent(
+      pageCollectionName,
+      { ...page, content: pageContent },
+      locale
+    )
     setContent(res.html)
     setUpdating(false)
   }

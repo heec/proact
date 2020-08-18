@@ -40,6 +40,7 @@ const actions = {
             fileName: page.fileName,
             routes: page.routes,
             id: page.id,
+            props: page.props,
             dateCreated: page.dateCreated,
             dateLastModified: page.dateLastModified,
           },

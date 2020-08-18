@@ -154,8 +154,8 @@ async function createMiddleware(app, options) {
 
   router.route('/api/rendercontent').post(
     routeHandler(async (req, ok, failed) => {
-      const { page, locale } = req.body
-      const html = await templateEngine.renderContent(page, locale)
+      const { collection, page, locale } = req.body
+      const html = await templateEngine.renderContent(collection, page, locale)
       ok({ html })
     })
   )

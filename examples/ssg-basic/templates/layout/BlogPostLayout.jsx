@@ -5,11 +5,10 @@ import Header from './Header'
 import Footer from './Footer'
 import Hero from '../container/Hero'
 
-export default function (props, context) {
+export default async function (props, context) {
   const {
     title,
     abstract,
-    author,
     backgroundImage,
     fontColor,
     pageTitle,

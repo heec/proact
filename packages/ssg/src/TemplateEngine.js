@@ -20,7 +20,11 @@ class SsgContext {
 
     if (!this._listCache.hasOwnProperty(listName)) {
       const list = await readJsonFile(
-        path.join(this.config.projectDir, 'lists', `${listName}.json`)
+        path.join(
+          this.config.projectDir,
+          this.config.dataListDir,
+          `${listName}.json`
+        )
       )
       const listProps = this.config.lists[listName].props
       const items = []
@@ -53,7 +57,7 @@ class SsgContext {
     if (!this._pageCollectionCache.hasOwnProperty(pageCollectionName)) {
       const dirPath = path.join(
         this.config.projectDir,
-        'pages',
+        this.config.pageCollectionDir,
         pageCollectionName
       )
       const files = fs.readdirSync(dirPath)
@@ -164,7 +168,12 @@ class TemplateEngine {
 
   async renderPage(collection, fileName) {
     const page = await readJsonFile(
-      path.join(this.projectDir, 'pages', collection, fileName)
+      path.join(
+        this.projectDir,
+        this.config.pageCollectionDir,
+        collection,
+        fileName
+      )
     )
 
     const locales = Object.keys(page.routes)

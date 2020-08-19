@@ -147,7 +147,11 @@ class SsgAdminService {
   }
 
   async _updateListChanges(listName) {
-    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const filePath = path.join(
+      this.basePath,
+      this.config.dataListDir,
+      `${listName}.json`
+    )
     const list = await readJsonFile(filePath)
     const listConfig = this.config.lists[listName]
     const updatedList = []
@@ -164,7 +168,11 @@ class SsgAdminService {
   }
 
   async _updatePageCollectionChanges(pageCollectionName) {
-    const dirPath = path.join(this.basePath, 'pages', pageCollectionName)
+    const dirPath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      pageCollectionName
+    )
     const files = fs.readdirSync(dirPath)
 
     const pageCollectionConfig = this.config.pages[pageCollectionName]
@@ -188,7 +196,7 @@ class SsgAdminService {
     await asyncForEach(files, async (file) => {
       const fileName = path.join(
         this.basePath,
-        'pages',
+        this.config.pageCollectionDir,
         pageCollectionName,
         file
       )
@@ -249,7 +257,11 @@ class SsgAdminService {
   }
 
   async getListItems(listName) {
-    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const filePath = path.join(
+      this.basePath,
+      this.config.dataListDir,
+      `${listName}.json`
+    )
     const list = await readJsonFile(filePath)
     const listConfig = this.config.lists[listName]
     list.forEach((item) => {
@@ -267,7 +279,11 @@ class SsgAdminService {
   }
 
   async addListItem(listName, item) {
-    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const filePath = path.join(
+      this.basePath,
+      this.config.dataListDir,
+      `${listName}.json`
+    )
     const list = await readJsonFile(filePath)
     list.push({ id: uuid(), ...item })
     await writeJsonFile(filePath, list)
@@ -275,7 +291,11 @@ class SsgAdminService {
   }
 
   async deleteListItem(listName, id) {
-    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const filePath = path.join(
+      this.basePath,
+      this.config.dataListDir,
+      `${listName}.json`
+    )
     const list = await readJsonFile(filePath)
     const newList = list.filter((i) => i.id !== id)
     await writeJsonFile(filePath, newList)
@@ -283,7 +303,11 @@ class SsgAdminService {
   }
 
   async updateListItem(listName, id, item) {
-    const filePath = path.join(this.basePath, 'lists', `${listName}.json`)
+    const filePath = path.join(
+      this.basePath,
+      this.config.dataListDir,
+      `${listName}.json`
+    )
     const list = await readJsonFile(filePath)
     const newList = list.map((i) => (i.id !== id ? i : { ...item, id: i.id }))
     await writeJsonFile(filePath, newList)
@@ -291,12 +315,21 @@ class SsgAdminService {
   }
 
   async getPageCollection(collection) {
-    const dirPath = path.join(this.basePath, 'pages', collection)
+    const dirPath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection
+    )
     const files = fs.readdirSync(dirPath)
     const items = []
     await asyncForEach(files, async (file) => {
       const pageData = await readJsonFile(
-        path.join(this.basePath, 'pages', collection, file)
+        path.join(
+          this.basePath,
+          this.config.pageCollectionDir,
+          collection,
+          file
+        )
       )
       delete pageData.content
       items.push(pageData)
@@ -305,7 +338,12 @@ class SsgAdminService {
   }
 
   async getPage(collection, fileName) {
-    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
     const file = await readJsonFile(filePath)
     return file
   }
@@ -322,7 +360,7 @@ class SsgAdminService {
     page.content = this._createPageContentFromTemplate(template, locales)
     const filePath = path.join(
       this.basePath,
-      'pages',
+      this.config.pageCollectionDir,
       collection,
       page.fileName
     )
@@ -336,7 +374,12 @@ class SsgAdminService {
     const locales = Object.keys(page.routes)
     page.dateLastModified = new Date()
     page.content = this._updatePageContent(page.content, locales)
-    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
     await writeJsonFile(filePath, page)
   }
 
@@ -344,12 +387,22 @@ class SsgAdminService {
     const page = await this.getPage(collection, fileName)
     page.dateLastModified = new Date()
     page.content = content
-    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
     await writeJsonFile(filePath, page)
   }
 
   async deletePage(collection, fileName) {
-    const filePath = path.join(this.basePath, 'pages', collection, fileName)
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
     await fs.unlinkSync(filePath)
     return { message: 'file deleted' }
   }

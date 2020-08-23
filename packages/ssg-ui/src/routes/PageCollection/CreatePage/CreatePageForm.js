@@ -10,6 +10,8 @@ import LocaleSelector from '../../../components/LocaleSelector'
 import ItemEditor from '../../../components/ItemEditor'
 import Button from '../../../controls/Button'
 import ButtonRow from '../../../controls/ButtonRow'
+import Tabs from '../../../controls/Tabs'
+import Tab from '../../../controls/Tab'
 
 const Root = styled.div``
 
@@ -70,57 +72,60 @@ export default function (props) {
 
   return (
     <Root>
-      <form>
-        <LocaleSelector
-          value={locale}
-          locales={locales}
-          onChange={(loc) => {
-            setLocale(loc)
-          }}
-        />
-        <FormGroup title="Filename">
-          <FormRow label="Name">
-            <input
-              type="text"
-              value={name}
-              name="name"
-              onChange={handleUpdate}
-              autoComplete="off"
-            />
-          </FormRow>
-          <FormRow label="File Name">
-            <input
-              type="text"
-              value={fileName}
-              name="fileName"
-              onChange={handleUpdate}
-              autoComplete="off"
-            />
-            <code>.json</code>
-          </FormRow>
-        </FormGroup>
-        <FormGroup title="Properties">
+      <Tabs>
+        <Tab label="Page">
+          <FormGroup title="Filename">
+            <FormRow label="Name">
+              <input
+                type="text"
+                value={name}
+                name="name"
+                onChange={handleUpdate}
+                autoComplete="off"
+              />
+            </FormRow>
+            <FormRow label="File Name">
+              <input
+                type="text"
+                value={fileName}
+                name="fileName"
+                onChange={handleUpdate}
+                autoComplete="off"
+              />
+              <code>.json</code>
+            </FormRow>
+          </FormGroup>
+
+          <FormGroup title="Routes">
+            {locales.map((locale) => (
+              <FormRow key={locale} label={locale} inline>
+                <input
+                  type="text"
+                  value={routes[locale]}
+                  name={locale}
+                  onChange={handleUpdateRoute}
+                  autoComplete="off"
+                />
+              </FormRow>
+            ))}
+          </FormGroup>
+        </Tab>
+        <Tab label="Properties">
+          <LocaleSelector
+            value={locale}
+            locales={locales}
+            onChange={(loc) => {
+              setLocale(loc)
+            }}
+          />
           <ItemEditor
             fields={pageCollectionConfiguration.props}
             locale={locale}
             item={propsItem}
             onChange={handlePropsChange}
           />
-        </FormGroup>
-        <FormGroup title="Routes">
-          {locales.map((locale) => (
-            <FormRow key={locale} label={locale} inline>
-              <input
-                type="text"
-                value={routes[locale]}
-                name={locale}
-                onChange={handleUpdateRoute}
-                autoComplete="off"
-              />
-            </FormRow>
-          ))}
-        </FormGroup>
-      </form>
+        </Tab>
+      </Tabs>
       <ButtonRow>
         <Button label="Save" color="primary" onClick={handleSave} />
         <Button label="Cancel" onClick={handleCancel} />

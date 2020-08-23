@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { toList } from '../../utils/toList'
 import theme from '../../theme'
 import Field from './Field'
+import FormGroup from '../../controls/FormGroup'
 
 const Row = styled.div`
   ${theme.margin(2.5, 0)}
@@ -66,13 +67,44 @@ function Property(props) {
 export default function (props) {
   const { fields, item, locale, onChange } = props
 
-  return toList(fields).map((field) => (
-    <Property
-      key={field.key}
-      field={field}
-      value={item[field.key]}
-      locale={field.localize ? locale : '*'}
-      onChange={onChange}
-    />
+  const [formGroups, setFormGroups] = useState([])
+
+  useEffect(() => {
+    const groups = {}
+    toList(fields).forEach((field) => {
+      const groupTitle = field.group || ''
+      if (!groups.hasOwnProperty(groupTitle)) {
+        groups[groupTitle] = {
+          title: groupTitle,
+          fields: [],
+        }
+      }
+      groups[groupTitle].fields.push(field)
+    })
+    setFormGroups(toList(groups))
+  }, [])
+
+  return formGroups.map((group) => (
+    <FormGroup key={group.title} title={group.title}>
+      {group.fields.map((field) => (
+        <Property
+          key={field.key}
+          field={field}
+          value={item[field.key]}
+          locale={field.localize ? locale : '*'}
+          onChange={onChange}
+        />
+      ))}
+    </FormGroup>
   ))
+
+  // return toList(fields).map((field) => (
+  //   <Property
+  //     key={field.key}
+  //     field={field}
+  //     value={item[field.key]}
+  //     locale={field.localize ? locale : '*'}
+  //     onChange={onChange}
+  //   />
+  // ))
 }

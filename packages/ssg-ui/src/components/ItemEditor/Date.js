@@ -10,8 +10,6 @@ export default function (props) {
   const { field, value, locale, onChange } = props
 
   function handleOnChange(date) {
-    console.log(date)
-    console.log(typeof date)
     onChange({ target: { value: date.toISOString() } })
   }
 

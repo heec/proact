@@ -9,13 +9,11 @@ import theme from '../../theme'
 
 const Popup = styled.div`
   position: relative;
-  max-width: 100vw;
-  max-height: 100vh;
+  width: 100vw;
+  height: 100vh;
   background-color: #fff;
   z-index: 2;
   overflow: hidden;
-  max-width: 720px;
-  min-width: 480px;
   ${theme.elevate(2)};
   flex-grow: 1;
 `
@@ -38,6 +36,10 @@ const Content = styled.div`
   ${theme.padding(2, 2)};
   max-height: calc(100vh - 60px);
   overflow: auto;
+  > div {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 `
 
 const Footer = styled.div`

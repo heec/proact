@@ -17,7 +17,6 @@ const actions = {
         lists[listName] = items
       })
 
-      console.log(2)
       const pagesConfig = config.pages
       const pageCollections = {}
       await asyncForEach(
@@ -27,7 +26,6 @@ const actions = {
           pageCollections[pageCollectionName] = pages
         }
       )
-      console.log(3)
 
       dispatch(mutations.setConfiguration(config))
       dispatch(mutations.setLists(lists))

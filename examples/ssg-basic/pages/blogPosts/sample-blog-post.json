@@ -9,6 +9,14 @@
   "dateCreated": "2020-08-03T05:27:50.892Z",
   "dateLastModified": "2020-08-18T08:38:36.365Z",
   "props": {
+    "pageTitle": {
+      "en": "",
+      "de": ""
+    },
+    "pageDescription": {
+      "en": "",
+      "de": ""
+    },
     "title": {
       "en": "Sample Blog Post",
       "de": ""

@@ -5,7 +5,7 @@ import theme from '../../theme'
 
 const FormControl = styled.div`
   display: flex;
-  border: solid 1px ${theme.colors.greyLight};
+  border: solid 1px ${theme.colors.grey};
   ${theme.margin(0.5, 0)};
   ${theme.padding(0.5)};
   input,

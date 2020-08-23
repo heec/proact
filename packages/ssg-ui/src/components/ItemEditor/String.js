@@ -7,7 +7,6 @@ import TextLengthValidator from './TextLengthValidator'
 
 export default function (props) {
   const { field, value, locale, onChange } = props
-  console.log(field)
   return (
     <>
       <FormControl>

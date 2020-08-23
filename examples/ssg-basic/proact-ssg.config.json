@@ -131,23 +131,42 @@
       "label": "Blog Posts",
       "locales": ["en", "de", "es", "pt"],
       "props": {
+        "pageTitle": {
+          "group": "Meta Tags",
+          "label": "Page Title",
+          "type": "string",
+          "required": true,
+          "localize": true,
+          "minLenth": 10,
+          "maxLenth": 55
+        },
+        "pageDescription": {
+          "group": "Meta Tags",
+          "label": "Description",
+          "type": "text",
+          "required": true,
+          "localize": true,
+          "minLenth": 50,
+          "maxLenth": 155
+        },
         "title": {
+          "group": "Blog",
           "label": "Title",
           "type": "string",
           "required": true,
           "localize": true,
-          "minLength": 20,
-          "maxLength": 60
+          "minLenth": 10,
+          "maxLenth": 70
         },
         "abstract": {
+          "group": "Blog",
           "label": "Abstract",
           "type": "text",
           "required": true,
-          "localize": true,
-          "minLength": 20,
-          "maxLength": 160
+          "localize": true
         },
         "author": {
+          "group": "Blog",
           "label": "Author",
           "type": "listRef",
           "list": "authors",
@@ -155,11 +174,13 @@
           "required": true
         },
         "publishDate": {
+          "group": "Publishing",
           "label": "Publish Date",
           "type": "date",
           "required": true
         },
         "relatedPosts": {
+          "group": "Publishing",
           "label": "Related Blog Posts",
           "type": "pageRef",
           "pageCollection": "blogPosts",

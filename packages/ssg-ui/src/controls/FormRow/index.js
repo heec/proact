@@ -17,7 +17,7 @@ const Label = styled.label`
 const FormControl = styled.div`
   flex-grow: 1;
   display: flex;
-  border: solid 1px ${theme.colors.greyLight};
+  border: solid 1px ${theme.colors.grey};
   ${theme.margin(0.5, 0)};
   ${theme.padding(0.5)};
   input,

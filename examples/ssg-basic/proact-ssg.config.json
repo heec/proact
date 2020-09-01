@@ -137,8 +137,8 @@
           "type": "string",
           "required": true,
           "localize": true,
-          "minLenth": 10,
-          "maxLenth": 55
+          "minLength": 10,
+          "maxLength": 55
         },
         "pageDescription": {
           "group": "Meta Tags",
@@ -146,8 +146,8 @@
           "type": "text",
           "required": true,
           "localize": true,
-          "minLenth": 50,
-          "maxLenth": 155
+          "minLength": 50,
+          "maxLength": 155
         },
         "title": {
           "group": "Blog",
@@ -155,8 +155,8 @@
           "type": "string",
           "required": true,
           "localize": true,
-          "minLenth": 10,
-          "maxLenth": 70
+          "minLength": 10,
+          "maxLength": 70
         },
         "abstract": {
           "group": "Blog",

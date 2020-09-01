@@ -26,7 +26,6 @@ class SsgAdminService {
       case 'float':
         return 0
       case 'boolean':
-        console.log('create boolean prop')
         return false
       case 'string':
       case 'text':
@@ -272,7 +271,6 @@ class SsgAdminService {
         listConfig.locales
       )
       x.id = id
-      console.log(x)
     })
 
     return list

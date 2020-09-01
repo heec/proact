@@ -3,11 +3,12 @@
   "fileName": "sample-blog-post.json",
   "routes": {
     "en": "/sample-blog-post.html",
-    "de": "/de/sample-blog-post.html"
+    "de": "/de/sample-blog-post.html",
+    "es": "/es/sample-blog-post.html"
   },
   "id": "1303689f-0bef-4c7a-96e2-3185655d0d28",
   "dateCreated": "2020-08-03T05:27:50.892Z",
-  "dateLastModified": "2020-08-18T08:38:36.365Z",
+  "dateLastModified": "2020-09-01T17:16:44.035Z",
   "props": {
     "pageTitle": {
       "en": "",
@@ -64,7 +65,8 @@
             "props": {
               "content": {
                 "en": "Duis rutrum porta nunc eget vehicula. Integer tellus nibh, bibendum quis aliquam congue, vulputate id magna. Mauris convallis felis justo, et lacinia nulla viverra et. Sed viverra augue ut neque consequat, quis posuere sapien lobortis. Cras ante felis, tempus eu feugiat vitae, volutpat eget felis. Maecenas dignissim imperdiet tempor. \n\n## Donec tempus lacinia porttitor\n\nSuspendisse pharetra vel dui eget laoreet. Morbi mollis lorem vel volutpat imperdiet. Sed est enim, ornare eget imperdiet eu, elementum vel ipsum. Cras rhoncus blandit orci, vitae finibus metus ultrices sit amet.\n\n- Proin nunc magna, cursus quis rutrum ut, aliquam at neque.\n- Donec at ultricies augue, non ullamcorper mauris.\n- Aenean pulvinar ipsum aliquam odio rhoncus sollicitudin.\n\nDuis vel lorem at nulla aliquam pulvinar eget faucibus erat. Vestibulum commodo congue libero vitae varius. Duis efficitur tellus diam, finibus rhoncus quam dictum vel. Donec tempus lacinia porttitor. Vivamus at ultrices nisi. Vivamus enim turpis, molestie quis volutpat at, semper eu lorem. \n",
-                "de": ""
+                "de": "",
+                "es": ""
               }
             }
           },
@@ -74,7 +76,8 @@
             "props": {
               "videoId": {
                 "en": "sBws8MSXN7A",
-                "de": ""
+                "de": "",
+                "es": ""
               }
             }
           },
@@ -84,7 +87,8 @@
             "props": {
               "content": {
                 "en": "## Mauris eu efficitur arcu\n\nMauris vel viverra mauris, quis pellentesque mi. Integer ultricies augue eget felis laoreet euismod. Nullam vestibulum magna nec neque condimentum suscipit. Duis dapibus cursus sapien, et porta eros sollicitudin nec. Aliquam congue quam ultrices risus aliquet tincidunt. Etiam tristique, est quis mollis venenatis, nisl felis porta velit, pulvinar feugiat erat nisi id leo. Duis et neque ac arcu consectetur aliquam. Ut posuere vel tortor ut mattis. Nulla facilisi. Pellentesque vehicula arcu quis feugiat aliquet. In eget iaculis leo, sit amet efficitur eros. \n\nDonec et lectus vestibulum, feugiat nibh vitae, ullamcorper ipsum. Morbi odio erat, ullamcorper a est eget, condimentum feugiat ligula. Proin blandit rutrum consequat.",
-                "de": ""
+                "de": "",
+                "es": ""
               }
             }
           }
@@ -94,6 +98,7 @@
   },
   "locales": [
     "en",
-    "de"
+    "de",
+    "es"
   ]
 }

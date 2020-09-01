@@ -180,6 +180,7 @@ class TemplateEngine {
     await asyncForEach(locales, async (locale) => {
       let content = await this.renderContent(collection, page, locale)
       content = content.replace(/>\s+</g, '><')
+
       let fileName = path.join(this.outDir, page.routes[locale])
 
       if (fileName.endsWith(path.sep)) {
@@ -196,7 +197,17 @@ class TemplateEngine {
   async renderContent(collection, page, locale) {
     const context = await this._createContext(collection, page, locale)
     try {
-      const content = await this.renderer.renderToString(RenderPage, context)
+      let content = await this.renderer.renderToString(RenderPage, context)
+
+      if (this.config.postProcessor) {
+        const postProcessingRes = this.config.postProcessor(content, context)
+        if (postProcessingRes instanceof Promise) {
+          content = await postProcessingRes
+        } else {
+          content = postProcessingRes
+        }
+      }
+
       return content
     } catch (err) {
       console.log(err)

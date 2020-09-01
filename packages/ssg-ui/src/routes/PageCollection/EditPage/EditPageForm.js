@@ -15,7 +15,8 @@ export default function (props) {
   const { page, onClose } = props
   const [name, setName] = useState('')
   const [fileName, setFileName] = useState('')
-  const [locale, setLocale] = useState('en')
+  const [locale, setLocale] = useState('')
+  const [locales, setLocales] = useState([])
   const [routes, setRoutes] = useState({})
   const [propsItem, setPropsItem] = useState({})
 
@@ -23,7 +24,6 @@ export default function (props) {
   const { pageCollectionConfiguration } = useSelector(
     (state) => state.pageCollection
   )
-  const { locales } = pageCollectionConfiguration
 
   useEffect(() => {
     if (page) {
@@ -31,8 +31,11 @@ export default function (props) {
       setFileName(page.fileName)
       const _routes = { ...page.routes }
       const _props = JSON.parse(JSON.stringify(page.props))
+      const _locales = Object.keys(page.routes)
+      setLocale(_locales[0])
       setPropsItem(_props)
       setRoutes(_routes)
+      setLocales(_locales)
     }
   }, [page])
 
@@ -113,7 +116,7 @@ export default function (props) {
           </FormGroup>
 
           <FormGroup title="Routes">
-            {locales.map((locale) => (
+            {pageCollectionConfiguration.locales.map((locale) => (
               <FormRow key={locale} label={locale} inline>
                 <input
                   type="text"

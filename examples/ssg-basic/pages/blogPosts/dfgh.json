@@ -1,0 +1,77 @@
+{
+  "name": "dfgh",
+  "fileName": "dfgh.json",
+  "props": {
+    "pageTitle": {
+      "en": "dfgh",
+      "de": ""
+    },
+    "pageDescription": {
+      "en": "dfgh",
+      "de": ""
+    },
+    "title": {
+      "en": "",
+      "de": ""
+    },
+    "abstract": {
+      "en": "",
+      "de": ""
+    },
+    "author": {
+      "*": ""
+    },
+    "publishDate": {
+      "*": ""
+    },
+    "relatedPosts": {
+      "*": []
+    }
+  },
+  "routes": {
+    "en": "/test/",
+    "de": "/de/test/"
+  },
+  "id": "07fd5bbc-a688-4405-80bc-356c851828ca",
+  "dateCreated": "2020-09-02T05:54:35.290Z",
+  "dateLastModified": "2020-09-02T06:25:25.228Z",
+  "content": {
+    "id": "27254761-8f62-4daa-b701-feb5315484ca",
+    "componentId": "blogPostLayout",
+    "props": {
+      "backgroundImage": {
+        "*": ""
+      },
+      "fontColor": {
+        "*": ""
+      }
+    },
+    "children": [
+      {
+        "id": "44fc3e63-9685-4938-ac66-c9a00e2aceeb",
+        "componentId": "section",
+        "props": {
+          "background": {
+            "*": ""
+          }
+        },
+        "children": [
+          {
+            "id": "b2feff09-49a2-4a93-a3e3-f96bef899b47",
+            "componentId": "markdown",
+            "props": {
+              "content": {
+                "en": "sdfgsdfg ",
+                "de": ""
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "locales": [
+    "en",
+    "de"
+  ]
+}

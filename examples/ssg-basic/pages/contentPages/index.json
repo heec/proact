@@ -8,7 +8,7 @@
   },
   "id": "b815b49d-a9b1-477d-93ba-1c2c07ca5ec8",
   "dateCreated": "2020-07-30T05:25:21.705Z",
-  "dateLastModified": "2020-07-30T05:34:37.941Z",
+  "dateLastModified": "2020-09-02T06:39:53.456Z",
   "props": {
     "pageTitle": {
       "en": "",
@@ -82,5 +82,10 @@
         ]
       }
     ]
-  }
+  },
+  "locales": [
+    "en",
+    "de",
+    "es"
+  ]
 }

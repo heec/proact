@@ -12,19 +12,23 @@
   "props": {
     "pageTitle": {
       "en": "",
-      "de": ""
+      "de": "",
+      "es": ""
     },
     "pageDescription": {
       "en": "",
-      "de": ""
+      "de": "",
+      "es": ""
     },
     "title": {
       "en": "Sample Blog Post",
-      "de": ""
+      "de": "",
+      "es": ""
     },
     "abstract": {
       "en": "Etiam commodo nec lacus eu placerat. Vivamus malesuada, quam non rhoncus scelerisque, nisl lacus hendrerit sapien, sed pretium magna leo non nisi.",
-      "de": ""
+      "de": "",
+      "es": ""
     },
     "author": {
       "*": "4a5fefad-87af-4869-9c86-4b4644c5674b"

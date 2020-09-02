@@ -166,38 +166,24 @@ class TemplateEngine {
     return context
   }
 
-  async renderPage(collection, fileName) {
-    const page = await readJsonFile(
-      path.join(
-        this.projectDir,
-        this.config.pageCollectionDir,
-        collection,
-        fileName
-      )
-    )
+  _savePageContent(route, content) {
+    let fileName = path.join(this.outDir, route)
 
-    const locales = Object.keys(page.routes)
-    await asyncForEach(locales, async (locale) => {
-      let content = await this.renderContent(collection, page, locale)
-      content = content.replace(/>\s+</g, '><')
+    if (fileName.endsWith(path.sep)) {
+      fileName += 'index.html'
+    }
 
-      let fileName = path.join(this.outDir, page.routes[locale])
+    const dirName = path.dirname(fileName)
 
-      if (fileName.endsWith(path.sep)) {
-        fileName += 'index.html'
-      }
-
-      const dirName = path.dirname(fileName)
-
-      fs.mkdirSync(path.dirname(fileName), { recursive: true })
-      fs.writeFileSync(fileName, content, 'utf8')
-    })
+    fs.mkdirSync(path.dirname(fileName), { recursive: true })
+    fs.writeFileSync(fileName, content, 'utf8')
   }
 
   async renderContent(collection, page, locale) {
     const context = await this._createContext(collection, page, locale)
     try {
       let content = await this.renderer.renderToString(RenderPage, context)
+      content = content.replace(/>\s+</g, '><')
 
       if (this.config.postProcessor) {
         const postProcessingRes = this.config.postProcessor(content, context)
@@ -213,6 +199,101 @@ class TemplateEngine {
       console.log(err)
     }
   }
+
+  async renderPage(collection, fileName) {
+    const page = await readJsonFile(
+      path.join(
+        this.projectDir,
+        this.config.pageCollectionDir,
+        collection,
+        fileName
+      )
+    )
+
+    const locales = Object.keys(page.routes)
+    await asyncForEach(locales, async (locale) => {
+      const content = await this.renderContent(collection, page, locale)
+      this._savePageContent(page.routes[locale], content)
+    })
+  }
+
+  async renderAllPages() {
+    const pageCollections = Object.keys(this.config.pages)
+    const buildResult = {
+      totalFiles: 0,
+      totalFilesBuild: 0,
+      totalFilesFailed: 0,
+      errors: [],
+      details: [],
+    }
+
+    const projectDir = this.projectDir
+    const pageCollectionDir = this.config.pageCollectionDir
+
+    await asyncForEach(pageCollections, async (pageCollection) => {
+      // get directory content
+
+      const collectionDir = path.join(
+        projectDir,
+        pageCollectionDir,
+        pageCollection
+      )
+      const files = fs.readdirSync(collectionDir)
+
+      await asyncForEach(files, async (file) => {
+        const page = await readJsonFile(path.join(collectionDir, file))
+        const locales = Object.keys(page.routes)
+        const pageRes = {
+          name: page.name,
+          fileName: page.fileName,
+          pageCollection: pageCollection,
+          dateCreated: page.dateCreated,
+          dateLastModified: page.dateLastModified,
+          routes: [],
+        }
+
+        await asyncForEach(locales, async (locale) => {
+          const route = page.routes[locale]
+          const res = {
+            route,
+          }
+          buildResult.totalFiles += 1
+
+          try {
+            const content = await this.renderContent(
+              pageCollection,
+              page,
+              locale
+            )
+            this._savePageContent(route, content)
+            res.status = 'ok'
+            buildResult.totalFilesBuild += 1
+          } catch (err) {
+            console.log(err)
+            res.status = 'failed'
+            res.error = err.toString()
+            buildResult.totalFilesFailed += 1
+            buildResult.errors.push({
+              name: page.name,
+              fileName: page.fileName,
+              pageCollection,
+              locale,
+              error: err.name,
+              message: err.message,
+              stack: err.stack,
+            })
+            const e = new Error()
+          }
+          pageRes.routes.push(res)
+        })
+
+        buildResult.details.push(pageRes)
+      })
+    })
+    return buildResult
+  }
+
+  //async renderPageCollection(collection, fileName) {}
 }
 
 module.exports = TemplateEngine

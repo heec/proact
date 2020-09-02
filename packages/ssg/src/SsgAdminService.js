@@ -80,6 +80,30 @@ class SsgAdminService {
     return content
   }
 
+  _updatePageProps(props, propsDefinition, locales) {
+    const updatedProps = {}
+
+    Object.keys(propsDefinition).forEach((key) => {
+      const prop = props[key]
+      if (propsDefinition[key].localize) {
+        // add locales
+        locales.forEach((locale) => {
+          if (prop[locale] === undefined) {
+            prop[locale] = this._getDefaultPropValue(propsDefinition[key])
+          }
+        })
+        // delete locales
+        Object.keys(prop).forEach((locale) => {
+          if (!locales.includes(locale)) {
+            delete prop[locale]
+          }
+        })
+      }
+      updatedProps[key] = prop
+    })
+    return updatedProps
+  }
+
   _updatePageContent(content, locales) {
     const updateNode = (node) => {
       const { componentId, children } = node
@@ -355,6 +379,13 @@ class SsgAdminService {
     page.dateLastModified = new Date()
     const locales = Object.keys(page.routes)
     const template = this.config.pages[collection].template
+
+    page.props = this._updatePageProps(
+      page.props,
+      this.config.pages[collection].props,
+      locales
+    )
+
     page.content = this._createPageContentFromTemplate(template, locales)
     const filePath = path.join(
       this.basePath,
@@ -371,6 +402,13 @@ class SsgAdminService {
   async updatePage(collection, fileName, page) {
     const locales = Object.keys(page.routes)
     page.dateLastModified = new Date()
+
+    page.props = this._updatePageProps(
+      page.props,
+      this.config.pages[collection].props,
+      locales
+    )
+
     page.content = this._updatePageContent(page.content, locales)
     const filePath = path.join(
       this.basePath,

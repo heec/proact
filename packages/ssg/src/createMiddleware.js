@@ -160,6 +160,13 @@ async function createMiddleware(app, options) {
     })
   )
 
+  router.route('/api/build-all').get(
+    routeHandler(async (req, ok, failed) => {
+      const buildResult = await templateEngine.renderAllPages()
+      ok(buildResult)
+    })
+  )
+
   router
     .route('/api/assets/:path*')
     .get(

@@ -7,6 +7,7 @@ import AppBar from '../components/AppBar'
 import Navigation from '../components/Navigation'
 import AssetsLibrary from './AssetsLibrary'
 import Dashboard from './Dashboard'
+import Build from './Build'
 import PageCollection from './PageCollection'
 import PageBuilder from './PageBuilder'
 import DataList from './DataList'
@@ -58,6 +59,9 @@ export default function (props) {
               </Route>
               <Route path="/assets/:path*">
                 <AssetsLibrary />
+              </Route>
+              <Route path="/build">
+                <Build />
               </Route>
               <Route path="/">
                 <Dashboard />

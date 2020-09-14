@@ -21,7 +21,14 @@ import EditPage from './EditPage'
 const Actions = styled.div`
   display: flex;
   button {
-    margin-right: 10px;
+    margin-right: 16px;
+  }
+`
+
+const LocaleRoutes = styled.div`
+  span {
+    display: inline-block;
+    margin-right: 12px;
   }
 `
 
@@ -47,6 +54,7 @@ const LinkList = styled.div`
     padding: 4px 0;
     margin: 0;
     margin-right: 12px;
+    white-space: nowrap;
   }
 `
 
@@ -128,9 +136,11 @@ export default function () {
                   <td>{item.fileName}</td>
                   <td>
                     <LinkList>
-                      {Object.keys(item.routes).map((loc) => (
-                        <strong key={loc}>{loc} </strong>
-                      ))}
+                      <LocaleRoutes>
+                        {Object.keys(item.routes).map((loc) => (
+                          <span key={loc}>{loc}</span>
+                        ))}
+                      </LocaleRoutes>
                       <ul>
                         {Object.keys(item.routes).map((loc) => (
                           <li key={loc}>

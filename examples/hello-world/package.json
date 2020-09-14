@@ -1,6 +1,6 @@
 {
   "name": "hello-world",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "proact 'hello world' sample",
   "main": "index.js",
   "scripts": {

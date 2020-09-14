@@ -157,7 +157,7 @@ class TemplateEngine {
     }
 
     if (this.config.onCreateContext) {
-      config.onCreateContext(this.config, context)
+      this.config.onCreateContext(this.config, context)
     }
     return context
   }

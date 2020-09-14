@@ -157,11 +157,7 @@ class TemplateEngine {
     }
 
     if (this.config.onCreateContext) {
-      let pageData = this.config.onCreateContext(this.config)
-      if (pageData instanceof Promise) {
-        pageData = await pageData
-      }
-      context.pageData = pageData
+      config.onCreateContext(this.config, context)
     }
     return context
   }

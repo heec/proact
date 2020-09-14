@@ -151,6 +151,7 @@
         },
         "title": {
           "group": "Blog",
+          "showInList": true,
           "label": "Title",
           "type": "string",
           "required": true,
@@ -167,6 +168,7 @@
         },
         "author": {
           "group": "Blog",
+          "showInList": true,
           "label": "Author",
           "type": "listRef",
           "list": "authors",

@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -11,6 +11,9 @@ import Loader from '../../controls/Loader'
 import IconButton from '../../controls/IconButton'
 import PagesIcon from '../../icons/Pages'
 import PageBuilderIcon from '../../icons/PageBuilder'
+import Property from '../../components/Property'
+import LocaleSelector from '../../components/LocaleSelector'
+import theme from '../../theme'
 import CreatePage from './CreatePage'
 import DeletePage from './DeletePage'
 import EditPage from './EditPage'
@@ -22,10 +25,37 @@ const Actions = styled.div`
   }
 `
 
+const LinkList = styled.div`
+  position: relative;
+  display: inline-block;
+  &:hover {
+    ul {
+      display: block;
+    }
+  }
+  ul {
+    position: absolute;
+    display: none;
+    list-style: none;
+    padding: 8px 16px;
+    margin: 0;
+    background-color: #fff;
+    z-index: 2;
+    ${theme.elevate(1)}
+  }
+  li {
+    padding: 4px 0;
+    margin: 0;
+    margin-right: 12px;
+  }
+`
+
 export default function () {
   const { collectionName } = useParams()
   const history = useHistory()
   const dispatch = useDispatch()
+  const [propColumns, setPropColumns] = useState([])
+  const [locale, setLocale] = useState('en')
   const { pageCollectionConfiguration, items, loaded } = useSelector(
     (state) => state.pageCollection
   )
@@ -42,6 +72,21 @@ export default function () {
     }
   }, [collectionName])
 
+  useEffect(() => {
+    if (pageCollectionConfiguration && pageCollectionConfiguration.props) {
+      const _propColumns = []
+      Object.keys(pageCollectionConfiguration.props).forEach((prop) => {
+        if (pageCollectionConfiguration.props[prop].showInList) {
+          _propColumns.push({
+            key: prop,
+            ...pageCollectionConfiguration.props[prop],
+          })
+        }
+      })
+      setPropColumns(_propColumns)
+    }
+  }, [pageCollectionConfiguration])
+
   if (!loaded) {
     return <Loader />
   }
@@ -53,6 +98,13 @@ export default function () {
   return (
     <>
       <ToolBar title={pageCollectionConfiguration.label} icon={<PagesIcon />}>
+        <LocaleSelector
+          locales={pageCollectionConfiguration.locales}
+          value={locale}
+          onChange={(loc) => {
+            setLocale(loc)
+          }}
+        />
         <CreatePage />
       </ToolBar>
       <PageContent>
@@ -63,6 +115,9 @@ export default function () {
                 <th>Name</th>
                 <th>File Name</th>
                 <th>Routes</th>
+                {propColumns.map((prop) => (
+                  <th key={prop.key}>{prop.label}</th>
+                ))}
                 <th>Actions</th>
               </tr>
             </thead>
@@ -72,15 +127,31 @@ export default function () {
                   <td>{item.name}</td>
                   <td>{item.fileName}</td>
                   <td>
-                    {Object.keys(item.routes).map((loc) => (
-                      <div key={loc}>
-                        <strong>{loc}:</strong>
-                        <a href={item.routes[loc]} target="_blank">
-                          {item.routes[loc]}
-                        </a>
-                      </div>
-                    ))}
+                    <LinkList>
+                      {Object.keys(item.routes).map((loc) => (
+                        <strong key={loc}>{loc} </strong>
+                      ))}
+                      <ul>
+                        {Object.keys(item.routes).map((loc) => (
+                          <li key={loc}>
+                            <strong>{loc}: </strong>
+                            <a href={item.routes[loc]} target="_blank">
+                              {item.routes[loc]}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </LinkList>
                   </td>
+                  {propColumns.map((prop) => (
+                    <td key={prop.key}>
+                      <Property
+                        field={prop}
+                        value={item.props[prop.key]}
+                        locale={locale}
+                      />
+                    </td>
+                  ))}
                   <td>
                     <Actions>
                       <EditPage page={item} />

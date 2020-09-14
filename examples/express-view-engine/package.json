@@ -1,6 +1,6 @@
 {
   "name": "basic-example",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "",
   "main": "server.js",
   "scripts": {

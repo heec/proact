@@ -1,2 +1,4 @@
 const createMiddleware = require('./src/createMiddleware')
-module.exports = { createMiddleware }
+const build = require('./src/build')
+
+module.exports = { build, createMiddleware }

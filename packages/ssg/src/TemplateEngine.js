@@ -213,7 +213,9 @@ class TemplateEngine {
     })
   }
 
-  async renderAllPages() {
+  async renderAllPages(buildOptions) {
+    const options = { ...buildOptions }
+
     const pageCollections = Object.keys(this.config.pages)
     const buildResult = {
       totalFiles: 0,
@@ -264,7 +266,9 @@ class TemplateEngine {
             this._savePageContent(route, content)
             res.status = 'ok'
             buildResult.totalFilesBuild += 1
+            console.log(`build ${route} - OK`)
           } catch (err) {
+            console.log(`build ${route} - FAILED`)
             console.log(err)
             res.status = 'failed'
             res.error = err.toString()

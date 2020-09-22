@@ -1,11 +1,12 @@
 {
   "name": "ssg-basic-example",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "proact-ssg serve",
-    "dev": "nodemon ./scripts/dev-server.js -e jsx  --watch ./templates"
+    "dev": "nodemon ./scripts/dev-server.js -e jsx  --watch ./templates",
+    "build": "node ./scripts/build.js"
   },
   "keywords": [],
   "author": "",

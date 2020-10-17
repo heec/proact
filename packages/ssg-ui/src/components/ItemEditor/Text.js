@@ -9,8 +9,10 @@ export default function (props) {
   const $textarea = useRef()
 
   useEffect(() => {
+    const y = window.pageYOffset
     $textarea.current.style.height = 'auto'
     $textarea.current.style.height = `${$textarea.current.scrollHeight}px`
+    window.scrollTo(0, y)
   }, [value])
 
   return (

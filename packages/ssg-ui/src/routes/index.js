@@ -8,6 +8,7 @@ import Navigation from '../components/Navigation'
 import AssetsLibrary from './AssetsLibrary'
 import Dashboard from './Dashboard'
 import Build from './Build'
+import ApplyConfigurationChanges from './ApplyConfigurationChanges'
 import PageCollection from './PageCollection'
 import PageBuilder from './PageBuilder'
 import DataList from './DataList'
@@ -62,6 +63,9 @@ export default function (props) {
               </Route>
               <Route path="/build">
                 <Build />
+              </Route>
+              <Route path="/apply-config-changes">
+                <ApplyConfigurationChanges />
               </Route>
               <Route path="/">
                 <Dashboard />

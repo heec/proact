@@ -167,6 +167,13 @@ async function createMiddleware(app, options) {
     })
   )
 
+  router.route('/api/apply-config-changes').get(
+    routeHandler(async (req, ok, failed) => {
+      await adminService.applyConfigChanges()
+      ok({ status: 'completed' })
+    })
+  )
+
   router
     .route('/api/assets/:path*')
     .get(

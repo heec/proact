@@ -11,9 +11,6 @@ class SsgAdminService {
     this.config = config
 
     // todo: validate directories and configuration
-
-    // update config changes
-    this.updateConfigChanges()
   }
 
   _getDefaultPropValue(def) {
@@ -240,18 +237,22 @@ class SsgAdminService {
     })
   }
 
-  async updateConfigChanges() {
+  async applyConfigChanges() {
     // update all lists
+    console.log('apply configuration changes to lists')
     await asyncForEach(Object.keys(this.config.lists), async (listName) => {
       await this._updateListChanges(listName)
     })
 
+    console.log('apply configuration changes to pages')
     await asyncForEach(
       Object.keys(this.config.pages),
       async (pageCollectionName) => {
         await this._updatePageCollectionChanges(pageCollectionName)
       }
     )
+    console.log('apply configuration changes completed')
+    return 'ok'
   }
 
   async _writeJsonFile(filePath, data) {

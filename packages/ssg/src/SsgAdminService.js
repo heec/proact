@@ -354,6 +354,7 @@ class SsgAdminService {
         )
       )
       delete pageData.content
+      pageData.fileName = file
       items.push(pageData)
     })
     return items
@@ -366,19 +367,22 @@ class SsgAdminService {
       collection,
       fileName
     )
-    const file = await readJsonFile(filePath)
-    return file
+    const page = await readJsonFile(filePath)
+    page.fileName = fileName
+    return page
   }
 
   async createPage(collection, page) {
     if (!page.fileName) {
       throw new Error('file name is required')
     }
+    const locales = Object.keys(page.routes)
+    const template = this.config.pages[collection].template
+    const fileName = page.fileName
     page.id = uuid()
     page.dateCreated = new Date()
     page.dateLastModified = new Date()
-    const locales = Object.keys(page.routes)
-    const template = this.config.pages[collection].template
+    page.fileName = undefined
 
     page.props = this._updatePageProps(
       page.props,
@@ -391,7 +395,7 @@ class SsgAdminService {
       this.basePath,
       this.config.pageCollectionDir,
       collection,
-      page.fileName
+      fileName
     )
     if (fs.existsSync(filePath)) {
       throw new Error('file exists')

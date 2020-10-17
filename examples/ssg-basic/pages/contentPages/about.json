@@ -1,6 +1,5 @@
 {
   "name": "About",
-  "fileName": "about.json",
   "routes": {
     "en": "/about.html",
     "de": "/de/about.html",

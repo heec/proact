@@ -1,6 +1,5 @@
 {
   "name": "Sign Up",
-  "fileName": "sign-up.json",
   "routes": {
     "en": "/signup.html",
     "de": "/de/signup.html",

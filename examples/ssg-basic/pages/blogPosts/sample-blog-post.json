@@ -1,6 +1,5 @@
 {
   "name": "Sample Blog Post",
-  "fileName": "sample-blog-post.json",
   "routes": {
     "en": "/sample-blog-post.html",
     "de": "/de/sample-blog-post.html",
@@ -8,7 +7,7 @@
   },
   "id": "1303689f-0bef-4c7a-96e2-3185655d0d28",
   "dateCreated": "2020-08-03T05:27:50.892Z",
-  "dateLastModified": "2020-09-01T17:16:44.035Z",
+  "dateLastModified": "2020-10-17T08:24:54.472Z",
   "props": {
     "pageTitle": {
       "en": "",
@@ -104,5 +103,6 @@
     "en",
     "de",
     "es"
-  ]
+  ],
+  "fileName": "sample-blog-post.json"
 }

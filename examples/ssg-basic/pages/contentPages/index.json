@@ -1,6 +1,5 @@
 {
   "name": "Home",
-  "fileName": "index.json",
   "routes": {
     "en": "/index.js",
     "de": "/de/index.js",

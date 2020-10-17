@@ -69,10 +69,13 @@ function PreviewWindow(props) {
   return <iframe ref={$iframe} frameBorder="0" width="100%"></iframe>
 }
 
+let updateTimer = undefined
+
 export default function (props) {
   const { locale, device } = props
   const [content, setContent] = useState('')
   const [updating, setUpdating] = useState(false)
+  const [updatePending, setUpdatePending] = useState(false)
 
   const { pageCollectionName, page, pageContent } = useSelector(
     (state) => state.pageBuilder
@@ -90,9 +93,13 @@ export default function (props) {
   }
 
   useEffect(() => {
-    if (!updating) {
+    const update = async () => {
       handleRenderPage()
     }
+    if (updateTimer) {
+      window.clearTimeout(updateTimer)
+    }
+    updateTimer = window.setTimeout(update, 1000)
   }, [pageContent])
 
   return (

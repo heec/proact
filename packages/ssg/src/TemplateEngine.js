@@ -65,6 +65,7 @@ class SsgContext {
       await asyncForEach(files, async (file) => {
         const pageData = await readJsonFile(path.join(dirPath, file))
         delete pageData.content
+        pageData.fileName = file
 
         const pageProps = this.config.pages[pageCollectionName].props
         const newProps = {}

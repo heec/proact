@@ -56,7 +56,8 @@
           "fontColor": {
             "*": ""
           }
-        }
+        },
+        "nodeId": "hero-2j30d6hy"
       },
       {
         "id": "88fa6774-5e85-439f-987c-eb41b069de53",
@@ -76,11 +77,14 @@
                 "de": "",
                 "es": ""
               }
-            }
+            },
+            "nodeId": "markdown-i00bqqz6"
           }
-        ]
+        ],
+        "nodeId": "section-y453quu0"
       }
-    ]
+    ],
+    "nodeId": "contentPageLayout-w8c8gtgl"
   },
   "locales": [
     "en",

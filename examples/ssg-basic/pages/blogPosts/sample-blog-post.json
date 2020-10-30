@@ -71,7 +71,8 @@
                 "de": "",
                 "es": ""
               }
-            }
+            },
+            "nodeId": "markdown-vmfaoztq"
           },
           {
             "id": "84ee772c-979b-40bf-9fc6-88868bf794a7",
@@ -82,7 +83,8 @@
                 "de": "",
                 "es": ""
               }
-            }
+            },
+            "nodeId": "youtubeVideo-sozq08a0"
           },
           {
             "id": "f791aade-d910-4e2a-bae6-851f4a8ec80d",
@@ -93,11 +95,14 @@
                 "de": "",
                 "es": ""
               }
-            }
+            },
+            "nodeId": "markdown-btt0qqos"
           }
-        ]
+        ],
+        "nodeId": "section-ax0ik6eu"
       }
-    ]
+    ],
+    "nodeId": "blogPostLayout-ixfk9i9k"
   },
   "locales": [
     "en",

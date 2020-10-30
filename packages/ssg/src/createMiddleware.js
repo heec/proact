@@ -175,6 +175,32 @@ async function createMiddleware(app, options) {
   )
 
   router
+    .route('/api/translations/pages/:collection/:fileName/:locale')
+    .get(
+      routeHandler(async (req, ok, failed) => {
+        const { collection, fileName, locale } = req.params
+        const translationFile = await adminService.exportTranslationFile(
+          collection,
+          fileName,
+          locale
+        )
+        ok(translationFile)
+      })
+    )
+    .put(
+      routeHandler(async (req, ok, failed) => {
+        const { collection, fileName, locale } = req.params
+        await adminService.importTranslationFile(
+          collection,
+          fileName,
+          locale,
+          req.body
+        )
+        ok({})
+      })
+    )
+
+  router
     .route('/api/assets/:path*')
     .get(
       routeHandler(async (req, ok, failed) => {

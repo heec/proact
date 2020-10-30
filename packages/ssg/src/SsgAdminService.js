@@ -13,6 +13,12 @@ class SsgAdminService {
     // todo: validate directories and configuration
   }
 
+  _createNodeId(componentId) {
+    return `${componentId}-${Math.random()
+      .toString(36)
+      .substring(2, 6)}${Math.random().toString(36).substring(2, 6)}`
+  }
+
   _getDefaultPropValue(def) {
     if (def.defaultValue) {
       return def.defaultValue
@@ -62,6 +68,7 @@ class SsgAdminService {
       const component = {
         id: uuid(),
         componentId,
+        nodeId: this._createNodeId(componentId),
         props: this._createProps(componentDefinition.props, locales),
       }
       if (componentDefinition.children) {
@@ -108,6 +115,9 @@ class SsgAdminService {
       const propsDefinition = componentDefinition.props
       if (!node.id) {
         node.id = uuid()
+      }
+      if (!node.nodeId) {
+        node.nodeId = this._createNodeId()
       }
       Object.keys(propsDefinition).forEach((key) => {
         if (propsDefinition[key].localize) {
@@ -205,6 +215,11 @@ class SsgAdminService {
         propsConfig,
         locales
       )
+
+      if (!component.nodeId) {
+        component.nodeId = _self._createNodeId(component.componentId)
+      }
+
       if (component.children) {
         component.children.forEach((child) => {
           updateComponent(child, locales)
@@ -446,6 +461,98 @@ class SsgAdminService {
     )
     await fs.unlinkSync(filePath)
     return { message: 'file deleted' }
+  }
+
+  async exportTranslationFile(collection, fileName, locale) {
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
+    const page = await readJsonFile(filePath)
+    const pageConfig = this.config.pages[collection]
+
+    const translations = {
+      url: page.routes[locale],
+    }
+
+    Object.keys(pageConfig.props).forEach((propName) => {
+      const propConfig = pageConfig.props[propName]
+      if (propConfig.localize) {
+        const key = `pageProperties_${propName}`
+        const pageProp = page.props[propName]
+
+        translations[key] = pageProp[locale]
+      }
+    })
+
+    this._exportComponentTranslations(page.content, locale, translations)
+
+    return translations
+  }
+
+  _exportComponentTranslations(component, locale, translations) {
+    const componentConfig = this.config.components[component.componentId]
+
+    Object.keys(componentConfig.props).forEach((propName) => {
+      const propConfig = componentConfig.props[propName]
+      if (propConfig.localize) {
+        const key = `content_${component.nodeId}_${propName}`
+        const componentProp = component.props[propName]
+
+        translations[key] = componentProp[locale]
+      }
+    })
+
+    if (component.children && component.children.length) {
+      component.children.forEach((child) => {
+        this._exportComponentTranslations(child, locale, translations)
+      })
+    }
+  }
+
+  async importTranslationFile(collection, fileName, locale, translations) {
+    console.log(`import translations for ${locale}/${collection}/${fileName}`)
+
+    const filePath = path.join(
+      this.basePath,
+      this.config.pageCollectionDir,
+      collection,
+      fileName
+    )
+    const page = await readJsonFile(filePath)
+
+    const nodesById = {}
+
+    function buildNodeList(components, componentList) {
+      if (components.nodeId) {
+        console.log(components.nodeId)
+        componentList[components.nodeId] = components
+      }
+      if (components.children && components.children.length) {
+        components.children.forEach((n) => buildNodeList(n, componentList))
+      }
+    }
+    buildNodeList(page.content, nodesById)
+
+    console.log(nodesById)
+
+    Object.keys(translations).forEach((key) => {
+      const keyParts = key.split('_')
+      if (keyParts[0] === 'pageProperties') {
+        const propName = keyParts[1]
+        page.props[propName][locale] = translations[key]
+        console.log('update page property ' + keyParts[1])
+      } else if (keyParts[0] === 'content') {
+        const nodeId = keyParts[1]
+        const propName = keyParts[2]
+        nodesById[nodeId].props[propName][locale] = translations[key]
+        console.log('update page content node ' + nodeId + ' ' + propName)
+      }
+    })
+
+    await writeJsonFile(filePath, page)
   }
 }
 module.exports = SsgAdminService

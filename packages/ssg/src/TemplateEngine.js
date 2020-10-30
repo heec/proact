@@ -86,7 +86,11 @@ class SsgContext {
 
   async getPage(pageCollectionName, fileName) {
     const pageCollection = await this.getPageCollection(pageCollectionName)
-    return pageCollection.find((item) => item.fileName === fileName)
+    const page = pageCollection.find((item) => item.fileName === fileName)
+    if (page) {
+      page.fileName = fileName
+    }
+    return page
   }
 }
 

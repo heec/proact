@@ -211,6 +211,7 @@ class TemplateEngine {
       )
     )
 
+    page.fileName = fileName
     const locales = Object.keys(page.routes)
     await asyncForEach(locales, async (locale) => {
       const content = await this.renderContent(collection, page, locale)
@@ -245,6 +246,7 @@ class TemplateEngine {
 
       await asyncForEach(files, async (file) => {
         const page = await readJsonFile(path.join(collectionDir, file))
+        page.fileName = file
         const locales = Object.keys(page.routes)
         const pageRes = {
           name: page.name,

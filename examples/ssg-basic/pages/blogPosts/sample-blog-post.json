@@ -36,9 +36,7 @@
       "*": "2020-08-17T22:00:00.000Z"
     },
     "relatedPosts": {
-      "*": [
-        "blogPosts/sample-blog-post.json"
-      ]
+      "*": ["blogPosts/sample-blog-post.json"]
     }
   },
   "content": {
@@ -104,10 +102,5 @@
     ],
     "nodeId": "blogPostLayout-ixfk9i9k"
   },
-  "locales": [
-    "en",
-    "de",
-    "es"
-  ],
-  "fileName": "sample-blog-post.json"
+  "locales": ["en", "de", "es"]
 }

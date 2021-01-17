@@ -142,6 +142,7 @@ class TemplateEngine {
     context.page = {
       name: page.name,
       fileName: page.fileName,
+      collection,
       dateCreated: page.dateCreated,
       dateLastModified: page.dateLastModified,
       props: {},

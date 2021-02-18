@@ -13,10 +13,12 @@ class SsgContext {
     this._pageCollectionCache = {}
   }
 
-  async getList(listName) {
+  async getList(listName, locale) {
     if (!this.config.lists.hasOwnProperty(listName)) {
       throw new Error(`unknown list ${listName}`)
     }
+
+    const _locale = locale || this.locale
 
     if (!this._listCache.hasOwnProperty(listName)) {
       const list = await readJsonFile(
@@ -31,7 +33,7 @@ class SsgContext {
       list.forEach((item) => {
         const newItem = {}
         Object.keys(listProps).forEach((propName) => {
-          const loc = listProps[propName].localize ? this.locale : '*'
+          const loc = listProps[propName].localize ? _locale : '*'
           newItem[propName] = item[propName][loc]
         })
         newItem.id = item.id
@@ -49,10 +51,12 @@ class SsgContext {
     return list.find((item) => item.id === id)
   }
 
-  async getPageCollection(pageCollectionName) {
+  async getPageCollection(pageCollectionName, locale) {
     if (!this.config.pages.hasOwnProperty(pageCollectionName)) {
       throw new Error(`unknown page collection ${pageCollectionName}`)
     }
+
+    const _locale = locale || this.locale
 
     if (!this._pageCollectionCache.hasOwnProperty(pageCollectionName)) {
       const dirPath = path.join(
@@ -70,7 +74,7 @@ class SsgContext {
         const pageProps = this.config.pages[pageCollectionName].props
         const newProps = {}
         Object.keys(pageProps).forEach((propName) => {
-          const loc = pageProps[propName].localize ? this.locale : '*'
+          const loc = pageProps[propName].localize ? _locale : '*'
           newProps[propName] = pageData.props[propName][loc]
         })
         pageData.props = newProps
